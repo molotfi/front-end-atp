@@ -22,7 +22,7 @@ $color-darkest: #2a2f2c;
 /* Set up fonts, colors and all that jazz. */
 body {
   background: #cdcfcf;
-  color: $color-gray-medium;
+  color: $color-gray-light;
   font-family: 'Open Sans', sans-serif;
   font-size: 18px;
   line-height: 1.75;
