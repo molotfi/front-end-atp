@@ -1,0 +1,93 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Automatic Problem Solver</title>
+
+  <meta name="description" content="Automatic Problem Solver">
+  <meta name="author" content="SitePoint">
+
+  <link rel="stylesheet" href="css/codecss.css?v=1.0">
+
+</head>
+
+<style>
+	p.b {
+  white-space: normal;
+}
+h1 {text-align: center;}
+
+
+
+#ok {
+   float:right;
+}
+
+</style>
+
+<body>
+<section class="content">
+  <h1 class="content__heading">Test Form</h1>
+  <form class="content__form contact-form">
+    <div class="testing">
+      <p>Test</p>
+    </div>
+    <div class="contact-form__input-group">
+
+    <div>
+      <input class="contact-form__input contact-form__input--radio" id="Reduction" name="option1" type="checkbox" value="reduction"/>
+      <label class="contact-form__label contact-form__label--radio" for="Reduction">Reduction</label>
+
+      <div>
+      <input class="contact-form__input contact-form__input--radio" id="Extension" name="option2" type="checkbox" value="extension"/>
+      <label class="contact-form__label contact-form__label--radio" for="Extension">Extension</label>
+      <input class="contact-form__input contact-form__input--radio" id="Extension" name="option2" type="checkbox" value="inc"/>
+      <label class="contact-form__label contact-form__label--radio" for="inc">Inc.</label>
+     <input class="contact-form__input contact-form__input--radio" id="Extension" name="option2" type="checkbox" value="exc"/>
+      <label class="contact-form__label contact-form__label--radio" for="exc">Exc.</label>
+      </div>
+  </div>
+
+<div>
+      <input class="contact-form__input contact-form__input--radio" id="LMD" name="option3" type="checkbox" value="LMD"/>
+      <label class="contact-form__label contact-form__label--radio" for="LMD">LMD</label>
+      
+	  <input class="contact-form__input contact-form__input--radio" id="LMD" name="option3" min="10" max="100">
+      <label class="contact-form__label contact-form__label--radio" for="LMD">LMD</label>
+</div>
+
+      <input class="contact-form__input contact-form__input--radio" id="Conjunctive" name="option4" type="checkbox" value="Conjunctive"/>
+      <label class="contact-form__label contact-form__label--radio" for="Conjunctive">Conjunctive</label>
+
+       <input class="contact-form__input contact-form__input--radio" id="Sort" name="option5" type="checkbox" value="Sort"/>
+      <label class="contact-form__label contact-form__label--radio" for="Sort">Sort</label>
+
+    </div>
+   <!--  <div class="contact-form__input-group">
+      <label class="contact-form__label" for="subject">How can I help you?</label>
+      <select class="contact-form__input contact-form__input--select" id="subject" name="subject">
+        <option>I have a problem.</option>
+        <option>I have a general question.</option>
+      </select>
+    </div> -->
+    <div class="contact-form__input-group">
+      <label class="contact-form__label" for="message">Enter a Message</label>
+      <textarea class="contact-form__input contact-form__input--textarea" id="message" name="message" rows="6" cols="65"></textarea>
+    </div>
+    <input name="secret" type="hidden" value="1b3a9374-1a8e-434e-90ab-21aa7b9b80e7"/>
+    <button class="contact-form__button" type="submit">Send It!</button>
+  </form>
+</section>
+<div class="results">
+  <h2 class="results__heading">Form Data</h2>
+  <pre class="results__display-wrapper"><code class="results__display"></code></pre>
+</div>
+
+</body>
+
+<script src="js.js"></script>
+
+
+</html>
