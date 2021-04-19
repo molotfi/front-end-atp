@@ -21,7 +21,7 @@ $color-darkest: #2a2f2c;
 
 /* Set up fonts, colors and all that jazz. */
 body {
-  background: #686a69;
+  background: #cdcfcf;
   color: $color-gray-medium;
   font-family: 'Open Sans', sans-serif;
   font-size: 18px;
