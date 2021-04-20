@@ -1,3 +1,9 @@
+## How to run locally
+
+```shell
+$ wasm-pack build --dev --target web
+$ npx serve
+```
 ## Welcome to GitHub Pages
 
 You can use the [editor on GitHub](https://github.com/mootje020/front-end-atp/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
