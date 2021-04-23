@@ -10,8 +10,10 @@
   <meta name="author" content="SitePoint">
 
   <link rel="stylesheet" type="text/css" href="codecss.css">
-
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="webassembly.js" type="module"></script>
+  <script src="inputHandling.js"></script>
 
 
 </head>
@@ -31,42 +33,50 @@ h1 {text-align: center;}
 </style>
 
 <body>
+
 <section class="content">
   <h1 class="content__heading">Automated Theorem Prover</h1>
-  <form class="content__form contact-form">
+  <form class="ATP-form" id="ATP-form">
+
     <div class="testing">
       <p>Enter the following inputs</p>
     </div>
-    <div class="contact-form__input-group">
+
+    <div class="ATPinput">
 
     <div>
-      <input class="contact-form__input contact-form__input--radio" id="Reduction" name="Reduction" type="radio" value="True"/>
-      <label class="contact-form__label contact-form__label--radio" for="Reduction">Reduction</label>
+      <input class="ATPinput" id="Reduction" name="Reduction" type="checkbox" value="True"/>
+      <label class="ATPinput" for="Reduction">Reduction</label>
     </div>  
 
     <div>
-      <input class="contact-form__input contact-form__input--radio" id="Extension" name="Extension" type="checkbox" value="True "/>
-      <label class="contact-form__label contact-form__label--radio" for="Extension">Extension</label>
-      <input class="contact-form__input contact-form__input--radio" id="Extension" name="Extension" type="radio" value="inc"/>
-      <label class="contact-form__label contact-form__label--radio" for="inc">Inc.</label>
-      <input class="contact-form__input contact-form__input--radio" id="Extension" name="Extension" type="radio" value="exc"/>
-      <label class="contact-form__label contact-form__label--radio" for="exc">Exc.</label>
+      <input class="ATPinput" id="Extension" name="Extension" type="checkbox" value="True" onClick="enableINPUT('Extension','Extension1','Extension2');"/>
+      <label class="ATPinput" for="Extension">Extension</label>
+      <input class="ATPinput" id="Extension1" name="Extension" type="radio" value="inc" required disabled="disabled"/>
+      <label class="ATPinput" for="inc">Inc.</label>
+      <input class="ATPinput" id="Extension2" name="Extension" type="radio" value="exc" required disabled="disabled"/>
+      <label class="ATPinput" for="exc">Exc.</label>
     </div>
 
+
+
 <div>
-    <input class="contact-form__input contact-form__input--radio" id="LSD" name="LSD" type="radio" value="True"/>
-    <label class="contact-form__label contact-form__label--radio" for="LSD">Limit Search depth to</label>  
-	  <input class="contact-form__input contact-form__input--radio" placeholder="1" type= "number" id="LSD" name="LSD" min="0" max="100">
+    <input class="ATPinput" id="LSD" name="Limit Search Depth" type="checkbox" value="True"/>
+    <label class="ATPinput" for="LSD">Limit Search depth to</label>  
+	  <input class="ATPinput" disabled="disabled" placeholder="1" type= "number" id="LSD1" name="Limit Search Depth" min="0" max="100" required>
+</div>
+
+
+
+
+<div>
+      <input class="ATPinput" id="Conjunctive" name="Conjunctive" type="checkbox" value="True"/>
+      <label class="ATPinput" for="Conjunctive">Conjunctive</label>
 </div>
 
 <div>
-      <input class="contact-form__input contact-form__input--radio" id="Conjunctive" name="Conjunctive" type="radio" value="True"/>
-      <label class="contact-form__label contact-form__label--radio" for="Conjunctive">Conjunctive</label>
-</div>
-
-<div>
-       <input class="contact-form__input contact-form__input--radio" id="Sort" name="Sort" type="radio" value="True"/>
-      <label class="contact-form__label contact-form__label--radio" for="Sort">Sort</label>
+       <input class="ATPinput" id="Sort" name="Sort" type="checkbox" value="True"/>
+      <label class="ATPinput" for="Sort">Sort</label>
 </div>
     </div>
    <!--  <div class="contact-form__input-group">
@@ -76,24 +86,28 @@ h1 {text-align: center;}
         <option>I have a general question.</option>
       </select>
     </div> -->
-    <div class="contact-form__input-group">
+    <div class="ATPinput">
     <!-- <label class="contact-form__label" for="message">Enter a Problem</label> -->
-    <textarea class="contact-form__input contact-form__input--textarea" placeholder="fof(hm, axiom, ![X]: (human(X) => mortal(X))).
-fof(hs, axiom, human(sokrates)).
-fof(ms, conjecture, mortal(sokrates))." id="problem" name="problem" rows="8" cols="75"></textarea>
+    <textarea class="ATPinput" placeholder="fof(hm, axiom, ![X]: (human(X) => mortal(X))).
+      fof(hs, axiom, human(sokrates)).
+      fof(ms, conjecture, mortal(sokrates))." id="problem" name="problem" rows="8" cols="75"></textarea>
     </div>
     <input name="secret" type="hidden" value="1b3a9374-1a8e-434e-90ab-21aa7b9b80e7"/>
-    <button class="contact-form__button" type="submit">Proof</button>
+    <button class="ATPinput" type="submit">Proof</button>
   </form>
 </section>
+
 <div class="results">
   <h2 class="results__heading">Form Data</h2>
   <pre class="results__display-wrapper"><code class="results__display"></code></pre>
 </div>
 
 </body>
-	  <script src="js.js"></script>
 
 
-  <script src="js.js"></script>
+<script src="js.js"></script>
+
 </html>
+
+
+
