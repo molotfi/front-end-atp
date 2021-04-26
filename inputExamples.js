@@ -3,9 +3,7 @@ function loadExampleInput2() {
   // document.forms.ATP-form.problem.value = text;
   if(document.getElementById('example1').checked) {
   	  //first clear the input
-  	  $('.ATPinput').prop('checked', false);
-  	  document.getElementById("problem").value = "";
-  	  document.getElementById("LSD1").value = "";
+  	  clearInput();
 
 	  document.getElementById('Extension').checked = true;
 	  $("#Extension1").removeAttr("disabled");
@@ -17,10 +15,9 @@ function loadExampleInput2() {
 
   if(document.getElementById('example2').checked) {
       //first clear the input
-  	  $('.ATPinput').prop('checked', false);
-	  document.getElementById('Extension').checked = true;
-	  document.getElementById("LSD1").value = "";
+  	  clearInput();
 
+	  document.getElementById('Extension').checked = true;
 	  $("#Extension2").removeAttr("disabled");
 	  document.getElementById('Extension2').checked = true;
 	  document.getElementById('LSD').checked = true;
@@ -34,4 +31,9 @@ function clearInput(){
 	$('.ATPinput').prop('checked', false);
 	document.getElementById("problem").value = "";
 	document.getElementById("LSD1").value = "";
+	$("#LSD1").attr("disabled", "disabled");
+	document.getElementById('Extension1').value = ''; 
+    document.getElementById('Extension2').value = ''; 
+    $("#Extension1").attr("disabled", "disabled");
+    $("#Extension2").attr("disabled", "disabled");
 }
