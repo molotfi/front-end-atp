@@ -14,6 +14,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="webassembly.js" type="module"></script>
   <script src="inputHandling.js"></script>
+  <script src="inputExamples.js"></script>
 
 
 </head>
@@ -63,7 +64,7 @@ h1 {text-align: center;}
 <div>
     <input class="ATPinput" id="LSD" name="Limit Search Depth" type="checkbox" value="True"/>
     <label class="ATPinput" for="LSD">Limit Search depth to</label>  
-	  <input class="ATPinput" disabled="disabled" placeholder="1" type= "number" id="LSD1" name="Limit Search Depth" min="0" max="100" required>
+	  <input class="ATPinput" disabled="disabled" placeholder="1" type="number" id="LSD1" name="Limit Search Depth" min="0" max="100" required rows="1" cols="2">
 </div>
 
 
@@ -95,7 +96,18 @@ fof(ms, conjecture, mortal(sokrates))." id="problem" name="problem" rows="8" col
     <input name="secret" type="hidden" value="1b3a9374-1a8e-434e-90ab-21aa7b9b80e7"/>
     <button class="ATPinput" type="submit">Proof</button>
   </form>
+
+  <div>
+    <input class="ATPinput" id="example1" name="add" type="radio" />
+    <label class="ATPinput" for="example1">Example1</label>
+    <input class="ATPinput" id="example2" name="add" type="radio" />
+    <label class="ATPinput" for="example1">Example2</label>
+    <button class="ATPinput" id="add" onclick= "loadExampleInput2()">Load Example</button>
+    <button class="ATPinput" id="add" onclick= "clearInput()">Clear</button>
+  </div>
 </section>
+
+
 
 <div class="results">
   <h2 class="results__heading">Form Data</h2>
