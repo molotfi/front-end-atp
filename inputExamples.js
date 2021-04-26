@@ -1,6 +1,4 @@
 function loadExampleInput2() {
-  // var text = "TESTING TESTING TESTING";
-  // document.forms.ATP-form.problem.value = text;
   if(document.getElementById('example1').checked) {
   	  //first clear the input
   	  clearInput();
