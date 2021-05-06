@@ -10,6 +10,7 @@
   <meta name="author" content="SitePoint">
 
   <link rel="stylesheet" type="text/css" href="codecss.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="webassembly.js" type="module"></script>
@@ -93,19 +94,59 @@ fof(hs, axiom, human(sokrates)).
 fof(ms, conjecture, mortal(sokrates))." id="problem" name="problem" rows="8" cols="75"></textarea>
     </div>
     <!-- <input name="secret" type="hidden" value="1b3a9374-1a8e-434e-90ab-21aa7b9b80e7"/> -->
-    <button class="ATPinput" type="submit">Proof</button>
+    <button class="btn" type="submit">Proof</button>
+    <button class="btn" id="add" class="fa fa-folder" onclick= "clearInput()"> Clear</button>
   </form>
+    
+  <!-- <div> -->
+   <!--  <table>
+    <tbody>
+      <td> 
+        <button class="btn" id="Example1" class="fa fa-folder" onclick= "loadExampleInput1()"> Example1</button>
+      </td>
+      <td>
+        
+      </td>
+      <td>
+        <button class="btn" id="add" class="fa fa-folder" onclick= "clearInput()"> Clear</button>
+      </td> -->
+    
 
-  <div>
-    <input class="ATPinput" id="example1" name="add" type="radio" />
-    <label class="ATPinput" for="example1">Example1</label>
-    <input class="ATPinput" id="example2" name="add" type="radio" />
-    <label class="ATPinput" for="example1">Example2</label>
-    <button class="ATPinput" id="add" onclick= "loadExampleInput2()">Load Example</button>
-    <button class="ATPinput" id="add" onclick= "clearInput()">Clear</button>
-  </div>
+    <!-- <input class="ATPinput" id="example1" name="add" type="radio" /> -->
+    <!-- <label class="ATPinput" for="example1">Example1</label> -->
+    <!-- <input class="ATPinput" id="example2" name="add" type="radio" /> -->
+    <!-- <label class="ATPinput" for="example1">Example2</label> -->
+   <!--  <button class="ATPinput" id="add" onclick= "loadExampleInput2()">Load Example</button>
+    <button class="ATPinput" id="add" onclick= "clearInput()">Clear</button> -->
+  <!-- </div> -->
+ <!--  </tbody>
+  </table> -->
+  <table>
+  <tr>
+    <th>Problem</th>
+    <th>test</th>
+    <th>Load</th>
+  </tr>
+  <tr>
+    <td><code>fof(hm, axiom, ![X]: (human(X) => mortal(X)))</code></td>
+    <td>Explanation</td>
+    <td> 
+    <button class="btn" id="Example1" class="fa fa-folder" onclick= "loadExampleInput1()"> Example1</button>
+    </td>
+  </tr>
+  <tr>
+    <td><code>fof(p1, axiom, (![X]: (~p(X) | (?[Y]: q(X,Y)))))</code></td>
+    <td>Explantaion</td>
+    <td><button class="btn" id="Example2" class="fa fa-folder" onclick= "loadExampleInput2()"> Example2</button></td>
+  </tr>
+  <tr>
+    <td>fof(p1, axiom, (![X]: (~p(X) | (?[Y]: q(X,Y)))))</td>
+    <td>Explanation</td>
+    <td>test</td>
+  </tr>
+</table>
+
 </section>
-
 
 
 <div class="results">

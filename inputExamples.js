@@ -1,5 +1,5 @@
-function loadExampleInput2() {
-  if(document.getElementById('example1').checked) {
+function loadExampleInput1() {
+  //f(document.getElementById('example1').checked) {
   	  //first clear the input
   	  clearInput();
 
@@ -10,9 +10,12 @@ function loadExampleInput2() {
 	  document.getElementById('Reduction').checked = true;
 	  document.getElementById('Sort').checked = true;
 	  $('#problem').html('fof(hm, axiom, ![X]: (human(X) => mortal(X)))');
-	}
+	
+}
 
-  if(document.getElementById('example2').checked) {
+function loadExampleInput2() {
+
+  //if(document.getElementById('example2').checked) {
       //first clear the input
   	  clearInput();
  
@@ -24,7 +27,7 @@ function loadExampleInput2() {
 	  $("#LSD1").removeAttr("disabled");
 	  document.getElementById("LSD1").value = 8;
 	  $('#problem').html('fof(hm, axiom, ![X]: (human(X) => mortal(X)))');
-	}
+	//}
 }
 
 function clearInput(){

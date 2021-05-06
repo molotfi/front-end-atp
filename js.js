@@ -128,5 +128,9 @@ const handleFormSubmit = event => {
  * its class name, then attach the `handleFormSubmit()` function to the 
  * `submit` event.
  */
-const form = document.getElementsByClassName('ATP-form')[0];
-form.addEventListener('submit', handleFormSubmit);
+
+//form.addEventListener('submit', handleFormSubmit);
+
+  const form = document.getElementsByClassName('ATP-form')[0];
+  form.addEventListener('submit', handleFormSubmit);
+  
