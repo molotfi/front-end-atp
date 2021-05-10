@@ -1,10 +1,15 @@
-import init, { helloworld } from './pkg/webassembly.js'
+import init, { run } from './pkg/webassembly.js'
 
-async function run() {
+async function webassembly(json) {
     await init()
-    const input = document.getElementById("webassembly_input").value
-    document.getElementById("webassembly_output").textContent = helloworld(input)
+    run(json)
     return false
 }
 
-window.run = run
+async function debug() {
+    let debugJSON = '{"problem": "fof(1, conjecture, ((![X]: ((~p(X) | q(f(X))) => (q(X) & (q(a) => r(b)) & ~r(X))) & q(f(b))) => p(a)))."}'
+    webassembly(debugJSON)
+}
+
+debug()
+window.webassembly = webassembly
