@@ -4,8 +4,10 @@ $(function enableInput() {
         if ($(this).is(":checked")) {
             $("#LSD1").removeAttr("disabled");
             $("#LSD1").focus();
-        } else {    
-            document.getElementById('LSD1').value = ''; 
+        } else {   
+            const container =  document.getElementById('LSD1').value;
+            //console.log(container);
+            document.getElementById('LSD1').value = '';
             $("#LSD1").attr("disabled", "disabled");
         }
     });

@@ -39,41 +39,6 @@ const getSelectValues = options => [].reduce.call(options, (values, option) => {
   return option.selected ? values.concat(option.value) : values;
 }, []);
 
-/**
- * A more verbose implementation of `formToJSON()` to explain how it works.
- *
- * NOTE: This function is unused, and is only here for the purpose of explaining how
- * reducing form elements works.
- *
- * @param  {HTMLFormControlsCollection} elements  the form elements
- * @return {Object}                               form data as an object literal
- */
-const formToJSON_deconstructed = elements => {
-  
-  // This is the function that is called on each element of the array.
-  const reducerFunction = (data, element) => {
-    
-    // Add the current field to the object.
-    data[element.name] = element.value;
-    
-    // For the demo only: show each step in the reducer’s progress.
-    console.log(JSON.stringify(data));
-
-    return data;
-  };
-  
-  // This is used as the initial value of `data` in `reducerFunction()`.
-  const reducerInitialValue = {};
-  
-  // To help visualize what happens, log the inital value, which we know is `{}`.
-  console.log('Initial `data` value:', JSON.stringify(reducerInitialValue));
-  
-  // Now we reduce by `call`-ing `Array.prototype.reduce()` on `elements`.
-  const formData = [].reduce.call(elements, reducerFunction, reducerInitialValue);
-  
-  // The result is then returned for use elsewhere.
-  return formData;
-};
 
 /**
  * Retrieves input data from a form and returns it as a JSON object.
@@ -90,9 +55,11 @@ const formToJSON = elements => [].reduce.call(elements, (data, element) => {
      * is one of those fields and, if so, store the values as an array.
      */
     if (isCheckbox(element)) {
-      data[element.name] = (data[element.name] || []).concat(element.value);
+      //data[element.name] = (data[element.name] || []).concat(element.value); original line ---!
+      data[element.name] = element.value;
     } else if (isMultiSelect(element)) {
-      data[element.name] = getSelectValues(element);
+      //data[element.name] = getSelectValues(element);  original line --!
+      data[element.name] = element.value;
     } else {
       data[element.name] = element.value;
     }
@@ -119,6 +86,8 @@ const handleFormSubmit = event => {
   
   // Use `JSON.stringify()` to make the output valid, human-readable JSON.
   dataContainer.textContent = JSON.stringify(data, null, "  ");
+  console.log(data);
+
   
   // ...this is where we’d actually do something with the form data...
 };
@@ -128,8 +97,6 @@ const handleFormSubmit = event => {
  * its class name, then attach the `handleFormSubmit()` function to the 
  * `submit` event.
  */
-
-//form.addEventListener('submit', handleFormSubmit);
 
   const form = document.getElementsByClassName('ATP-form')[0];
   form.addEventListener('submit', handleFormSubmit);
