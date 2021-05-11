@@ -5,9 +5,17 @@ use cop::role::RoleMap;
 use cop::szs;
 use cop::{Lit, Offset};
 use log::info;
-use meancop::{parse, preprocess, Cli, Error};
+use crate::{parse, preprocess, Cli, Error};
 use std::fs::File;
 use std::io::Write;
+
+pub fn test() {
+    info!("test");
+}
+
+pub fn wasm_main() {
+
+}
 
 pub fn main() {
     use env_logger::Env;
