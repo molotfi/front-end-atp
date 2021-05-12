@@ -13,7 +13,7 @@ pub fn main(data : &str) -> String {
      * possible solution is to return serde_json::Result;
      * that way the frontend would be able to print error message if one occurs.
      */
-    wasm_logger::init(wasm_logger::Config::default());
+    wasm_logger::init(wasm_logger::Config::new(log::Level::Info));
     let query : Query = serde_json::from_str(data).unwrap();
     let arena: Arena<String> = Arena::new();
     info!("{}", &*format!("{:?}", query));
