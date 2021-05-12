@@ -1,4 +1,4 @@
-include cop.mk
+_include cop.mk
 
 TPTP630FOF := $(shell find i/TPTP-v6.3.0/ -type f -name "*+?.p" | sort -R)
 

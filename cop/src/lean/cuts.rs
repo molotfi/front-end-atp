@@ -1,14 +1,15 @@
 use alloc::{format, string::String, string::ToString};
 use core::convert::{TryFrom, TryInto};
 use core::result::Result;
+use serde::{Deserialize, Serialize};
 
-#[derive(Copy, Clone, Debug)]
+#[derive(Copy, Clone, Serialize, Deserialize, Debug)]
 pub enum Cut {
     Exclusive,
     Inclusive,
 }
 
-#[derive(Copy, Clone, Default, Debug)]
+#[derive(Copy, Clone, Default, Debug, Serialize, Deserialize)]
 pub struct Cuts {
     /// perform (inclusive) cut on reduction steps
     pub reduction: bool,

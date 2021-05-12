@@ -1,4 +1,4 @@
-include cop.mk
+_include cop.mk
 
 BUSHY := $(shell find i/bushy/ -type f | sort -R)
 

@@ -1,5 +1,5 @@
-include bushy.mk
-include chainy.mk
-include tptp.mk
-include miz40.mk
-include flyspeck.mk
+_include bushy.mk
+_include chainy.mk
+_include tptp.mk
+_include miz40.mk
+_include flyspeck.mk

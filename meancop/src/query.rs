@@ -1,35 +1,37 @@
 use serde::{Deserialize, Serialize};
+use cop::lean::Cuts;
 
+// might require custom serialization/deserialization
 #[derive(Serialize, Deserialize, Debug)]
 pub struct Query {
-    #[serde(default = "default_bool")]
-    reduction: bool,
+    cut: bool,
 
-    #[serde(default = "default_bool")]
-    extension: bool,
+    cuts: Option<Cuts>,
 
-    #[serde(default = "default_bool")]
-    extension_inc: bool,
+    pub conj: bool,
 
-    #[serde(default = "default_bool")]
-    extension_exc: bool,
+    pub nopaths: bool,
 
-    #[serde(default = "default_limit_depth")]
-    limit_search_depth: i32,
+    lim: Option<usize>,
 
-    #[serde(default = "default_bool")]
-    conjunctive: bool,
+    // pub stats: Option<PathBuf>,
 
-    #[serde(default = "default_bool")]
-    sort: bool,
-
-    problem: String,
+    pub problem: String,
 }
 
-fn default_bool() -> bool {
-    false
-}
+impl Query {
+    pub fn get_cuts(&self) -> Cuts {
+        if self.cut {
+            Cuts::max()
+        } else {
+            self.cuts.unwrap_or_default()
+        }
+    }
 
-fn default_limit_depth() -> i32 {
-    1
+    pub fn depths(&self) -> Box<dyn Iterator<Item = usize>> {
+        match self.lim {
+            Some(lim) => Box::new(1..lim),
+            None => Box::new(1..),
+        }
+    }
 }

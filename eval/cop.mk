@@ -1,7 +1,7 @@
 ifndef COP_MK
 COP_MK := 1
 
-include join.mk
+_include join.mk
 
 ifndef USE_SOLVED
 # ignore errors, such as stack overflows

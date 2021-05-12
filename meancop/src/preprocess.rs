@@ -1,4 +1,4 @@
-use crate::{Cli, Error};
+use crate::{Query, Error};
 use colosseum::unsync::Arena;
 use cop::fof::{Form, Op, SForm, SkolemState};
 use cop::lean::Matrix;
@@ -30,7 +30,7 @@ fn add_eq_axioms(fm: SForm) -> Result<SForm, Error> {
 
 type Cnf = Form<String, String, usize>;
 
-fn cnf(fm: SForm, cli: &Cli) -> Cnf {
+fn cnf(fm: SForm, query: &Query) -> Cnf {
     let unfolds: [Box<change::DynFn<SForm>>; 4] = [
         Box::new(|fm| fm.unfold_neg()),
         Box::new(|fm| fm.unfold_impl()),
@@ -45,7 +45,7 @@ fn cnf(fm: SForm, cli: &Cli) -> Cnf {
     info!("fresh vars: {}", fm);
     let fm = fm.skolem_outer(&mut SkolemState::new(("skolem".to_string(), 0)));
     info!("skolemised: {}", fm);
-    let fm = if cli.nopaths { fm } else { fm.order().0 };
+    let fm = if query.nopaths { fm } else { fm.order().0 };
     info!("ordered: {}", fm);
     fm.cnf()
 }
@@ -88,7 +88,7 @@ fn hash_matrix<'a>(matrix: &mut Matrix<SLit<'a>>, hash: &Sign<'a>) {
 
 pub fn preprocess<'a>(
     fm: SForm,
-    cli: &Cli,
+    query: &Query,
     arena: &'a Arena<String>,
 ) -> Result<(Matrix<SLit<'a>>, Sign<'a>), Error> {
     let fm = add_eq_axioms(fm)?;
@@ -97,7 +97,7 @@ pub fn preprocess<'a>(
     // "#" marks clauses stemming from the conjecture
     // we can interpret it as "$true"
     let hash = Form::Atom("#".to_string(), Args::new());
-    let (hashed, fm) = match (cli.conj, fm) {
+    let (hashed, fm) = match (query.conj, fm) {
         (true, Form::Bin(a, Op::Impl, c)) => {
             (true, Form::imp(*a & hash.clone(), hash.clone() & *c))
         }
@@ -105,7 +105,7 @@ pub fn preprocess<'a>(
     };
     info!("hashed: {}", fm);
 
-    let fm = cnf(fm, cli);
+    let fm = cnf(fm, query);
     let hash = hash.map_vars(&mut |_| 0);
     info!("cnf: {}", fm);
 

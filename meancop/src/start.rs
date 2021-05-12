@@ -1,55 +1,49 @@
-use clap::Clap;
 use colosseum::unsync::Arena;
 use cop::lean::{Clause, Proof};
 use cop::role::RoleMap;
-use cop::szs;
+use cop::{szs};
 use cop::{Lit, Offset};
-use log::info;
-use crate::{parse, preprocess, Cli, Error};
-use std::fs::File;
-use std::io::Write;
+use log::{info, error};
+use crate::{parse, preprocess, Query, Error};
+use wasm_logger;
 
-pub fn test() {
-    info!("test");
-}
-
-pub fn wasm_main() {
-
-}
-
-pub fn main() {
-    use env_logger::Env;
-    // log warnings and errors by default, do not print timestamps
-    env_logger::from_env(Env::default().filter_or("LOG", "warn"))
-        .format_timestamp(None)
-        .init();
-
-    let cli = Cli::parse();
+pub fn main(data : &str) -> String {
+    /*
+     * TODO: error handling
+     * possible solution is to return serde_json::Result;
+     * that way the frontend would be able to print error message if one occurs.
+     */
+    wasm_logger::init(wasm_logger::Config::default());
+    let query : Query = serde_json::from_str(data).unwrap();
     let arena: Arena<String> = Arena::new();
+    info!("{}", &*format!("{:?}", query));
 
-    let result = run(&cli, &arena);
-    if let Err(e) = result {
-        print!("{}", szs::Status(e.get_kind()));
-        if let Some(e) = e.get_error() {
-            cli.output(e).unwrap()
-        };
-        std::process::exit(1);
+    match run(&query, &arena) {
+        Ok(t) => t,
+        Err(e) => {
+            print!("{}", szs::Status(e.get_kind()));
+            if let Some(e) = e.get_error() {
+                error!("{}", e);
+                return format!("{}", e)
+            };
+            std::process::exit(1);
+        }
     }
 }
 
-pub fn run(cli: &Cli, arena: &Arena<String>) -> Result<(), Error> {
+fn run(query: &Query, arena: &Arena<String>) -> Result<String, Error> {
     let mut forms = RoleMap::default();
-    parse::parse_file(&cli.file, &mut forms)?;
+    parse::parse_query(&query, &mut forms)?;
     let fm = match forms.join() {
         Some(fm) => fm,
         None => {
             print!("{}", szs::Status(szs::Satisfiable));
-            return Ok(());
+            return Ok("".parse().unwrap());
         }
     };
     info!("joined: {}", fm);
 
-    let (matrix, hash) = preprocess::preprocess(fm, cli, arena)?;
+    let (matrix, hash) = preprocess::preprocess(fm, query, arena)?;
 
     let db = matrix.contrapositives().collect();
     info!("db: {}", db);
@@ -57,8 +51,8 @@ pub fn run(cli: &Cli, arena: &Arena<String>) -> Result<(), Error> {
     let start = Offset::new(0, &start);
 
     let mut infs = Vec::new();
-    let cuts = cli.get_cuts();
-    for lim in cli.depths() {
+    let cuts = query.get_cuts();
+    for lim in query.depths() {
         use cop::lean::search::{Context, Opt, Search, Task};
         info!("search with depth {}", lim);
         let opt = Opt { cuts, lim };
@@ -70,22 +64,13 @@ pub fn run(cli: &Cli, arena: &Arena<String>) -> Result<(), Error> {
 
         if let Some(steps) = proof {
             let proof = Proof::from_iter(&mut steps.iter().cloned(), &mut 0);
-            let changes: Vec<_> = steps.changes().cloned().collect();
-
-            if let Some(file) = &cli.stats {
-                let mut f = File::create(file)?;
-                let infs = serde_json::to_string(&infs).unwrap();
-                let changes = serde_json::to_string(&changes).unwrap();
-                writeln!(f, r#"{{ "infs": {}, "changes": {} }}"#, infs, changes)?;
-            };
 
             let hash = Lit::from(hash.clone());
             let hash = Offset::new(0, &hash);
             assert!(proof.check(&search.sub, hash, Context::default()));
             print!("{}", szs::Status(szs::Theorem));
             let proof = proof.display(hash);
-            cli.output(proof)?;
-            return Ok(());
+            return Ok(proof.to_string())
         }
     }
 

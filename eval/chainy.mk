@@ -1,4 +1,4 @@
-include cop.mk
+_include cop.mk
 
 CHAINY := $(shell find i/chainy/ -type f | sort -R)
 
