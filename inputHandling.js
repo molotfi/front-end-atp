@@ -5,7 +5,6 @@ $(function enableInput() {
             $("#LSD1").removeAttr("disabled");
             $("#LSD1").focus();
         } else {   
-            const container =  document.getElementById('LSD1').value;
             //console.log(container);
             document.getElementById('LSD1').value = '';
             $("#LSD1").attr("disabled", "disabled");
@@ -19,7 +18,7 @@ $(function enableInput() {
             $("#Extension1").removeAttr("disabled");
             $("#Extension1").focus();
             $("#Extension2").removeAttr("disabled");
-            $("#Extension3").focus();
+            $("#Extension2").focus();
         } else {
             document.getElementById('Extension1').value = ''; 
             document.getElementById('Extension2').value = ''; 

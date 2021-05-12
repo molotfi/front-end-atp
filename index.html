@@ -46,35 +46,36 @@ h1 {text-align: center;}
     <div class="ATPinput">
 
     <div>
-      <input class="ATPinput" id="Reduction" name="Reduction" type="checkbox" value="true"/>
+      <input class="ATPinput" id="Reduction" name="Reduction" type="checkbox" value=true/>
       <label class="ATPinput" for="Reduction">Reduction</label>
     </div>  
 
     <div>
       <input class="ATPinput" id="Extension" name="Extension" type="checkbox" value="true"/>
       <label class="ATPinput" for="Extension">Extension</label>
-      <input class="ATPinput" id="Extension1" name="Extension" type="radio" value="inc" required disabled="disabled"/>
+
+      <input class="ATPinput" id="Extension1" name="Extension" type="radio" value="inclusive" required disabled="disabled"/>
       <label class="ATPinput" for="inc">Inc.</label>
-      <input class="ATPinput" id="Extension2" name="Extension" type="radio" value="exc" required disabled="disabled"/>
+      <input class="ATPinput" id="Extension2" name="Extension" type="radio" value="exclusive" required disabled="disabled"/>
       <label class="ATPinput" for="exc">Exc.</label>
     </div>
 
 
-
 <div>
-    <input class="ATPinput" id="LSD" name="Limit Search Depth" type="checkbox" value="true"/>
+    <input class="ATPinput" id="LSD" name="lim" type="checkbox" value="true"/>
     <label class="ATPinput" for="LSD">Limit Search depth to</label>  
-	  <input class="ATPinput" disabled="disabled" placeholder="1" type="number" id="LSD1" name="Limit Search Depth" min="0" max="100" required rows="1" cols="2">
+	  <input class="ATPinput" id="LSD1" name="lim" type="number" disabled="disabled" placeholder="1" min="0" max="100" required rows="1" cols="2">
+    <label class="ATPinput" for="number">.</label>
 </div>
 
 
 <div>
-      <input class="ATPinput" id="Conjunctive" name="Conjunctive" type="checkbox" value="true"/>
+      <input class="ATPinput" id="Conjunctive" name="conj" type="checkbox" value="true"/>
       <label class="ATPinput" for="Conjunctive">Conjunctive</label>
 </div>
 
 <div>
-       <input class="ATPinput" id="Sort" name="Sort" type="checkbox" value="true"/>
+       <input class="ATPinput" id="Sort" name="nopaths" type="checkbox" value="true"/>
       <label class="ATPinput" for="Sort">Sort</label>
 </div>
     </div>
