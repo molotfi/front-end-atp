@@ -62,6 +62,10 @@ const formToJSON = elements => [].reduce.call(elements, (data, element) => {
           //'Extension: '.concat((data[element.name] = element.value))
         }
       }
+      if(!LSD.checked)
+      {
+        LSD.value = "false";
+      }
       else{    
         delete data['Reduction'];
         delete data['Extension'];   
@@ -73,8 +77,7 @@ const formToJSON = elements => [].reduce.call(elements, (data, element) => {
 
   if(!element.checked && isCheckbox(element)){
        if(!(Reduction.checked) && !(Extension.checked))
-        {
-          console.log(1234);
+        { 
           data.cut = "false";
           data.cuts = ["false", "null"];
         }
@@ -104,6 +107,7 @@ const handleFormSubmit = event => {
   
   // Use `JSON.stringify()` to make the output valid, human-readable JSON.
   dataContainer.textContent = JSON.stringify(data, null, "  ");
+  console.log(data);
   data = {};
   
   // ...this is where we’d actually do something with the form data...

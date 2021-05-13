@@ -1,33 +1,28 @@
 function loadExampleInput1() {
-  //f(document.getElementById('example1').checked) {
-  	  //first clear the input
-  	  clearInput();
+	clearInput();
 
-	  document.getElementById('Extension').checked = true;
-	  $("#Extension1").removeAttr("disabled");
-	  $("#Extension2").removeAttr("disabled");
-	  document.getElementById('Extension1').checked = true;
-	  document.getElementById('Reduction').checked = true;
-	  document.getElementById('Sort').checked = true;
-	  $('#problem').html('fof(hm, axiom, ![X]: (human(X) => mortal(X)))');
+	document.getElementById('Reduction').checked = true;
+	document.getElementById('Extension').checked = true;
+	$("#Extension1").removeAttr("disabled");
+	$("#Extension2").removeAttr("disabled");
+	document.getElementById('Extension1').checked = true;
+	document.getElementById('Sort').checked = true;
+	$('#problem').html('fof(hm, axiom, ![X]: (human(X) => mortal(X)))');
 	
 }
 
 function loadExampleInput2() {
 
-  //if(document.getElementById('example2').checked) {
-      //first clear the input
-  	  clearInput();
- 
-	  document.getElementById('Extension').checked = true;
-	  $("#Extension1").removeAttr("disabled");
-	  $("#Extension2").removeAttr("disabled");
-	  document.getElementById('Extension2').checked = true;
-	  document.getElementById('LSD').checked = true;
-	  $("#LSD1").removeAttr("disabled");
-	  document.getElementById("LSD1").value = 8;
-	  $('#problem').html('fof(hm, axiom, ![X]: (human(X) => mortal(X)))');
-	//}
+	clearInput();
+
+	document.getElementById('Extension').checked = true;
+	$("#Extension1").removeAttr("disabled");
+	$("#Extension2").removeAttr("disabled");
+	document.getElementById('Extension2').checked = true;
+	document.getElementById('LSD').checked = true;
+	$("#LSD1").removeAttr("disabled");
+	document.getElementById("LSD1").value = 8;
+	$('#problem').html('fof(hm, axiom, ![X]: (human(X) => mortal(X)))');
 }
 
   
@@ -37,9 +32,9 @@ function clearInput(){
   document.getElementById("LSD1").value = "";
   $("#LSD1").attr("disabled", "disabled");  
   document.getElementById('Extension1').checked = false; 
-    document.getElementById('Extension2').checked = false; 
-    $("#Extension1").attr("disabled", "disabled");
-    $("#Extension2").attr("disabled", "disabled");
-    data = {};
-    console.log(data);
+  document.getElementById('Extension2').checked = false; 
+  $("#Extension1").attr("disabled", "disabled");
+  $("#Extension2").attr("disabled", "disabled");
+  data = {};
+  console.log(data);
 }

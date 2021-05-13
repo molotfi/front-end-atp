@@ -6,7 +6,7 @@ $(function enableInput() {
             $("#LSD1").focus();
         } else {   
             //console.log(container);
-            document.getElementById('LSD1').value = '';
+            //document.getElementById('LSD1').value = '';
             $("#LSD1").attr("disabled", "disabled");
         }
     });
