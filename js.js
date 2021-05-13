@@ -37,19 +37,51 @@ const formToJSON = elements => [].reduce.call(elements, (data, element) => {
      * Some fields allow for more than one value, so we need to check if this
      * is one of those fields and, if so, store the values as an array.
      */
-
-    if (isCheckbox(element)) {
-      data[element.name] = (data[element.name] || '').concat(element.value);
+      if((element.name == 'Reduction') || ((element.name == 'Extension')))
+      {
+        if(Reduction.checked && !Extension.checked)
+        {
+          delete data['Reduction'];
+          delete data['Extension'];
+          data.cut = "true";
+          data.cuts = [Reduction.value, "null"];
+        }
+        if(Extension.checked && !Reduction.checked)
+        {
+          delete data['Reduction'];
+          delete data['Extension'];
+          data.cut = "true";
+          data.cuts = [Reduction.value,element.value];
+        }
+        if((Extension.checked) && (Reduction.checked))
+        {
+          delete data['Reduction'];
+          delete data['Extension'];
+          data.cut = "true";
+          data.cuts = [Reduction.value,element.value];
+          //'Extension: '.concat((data[element.name] = element.value))
+        }
       }
-    else {
-      data[element.name] = element.value;
-    }
-  }
-  if(!element.checked && isCheckbox(element))
-  {
-    data[element.name] = 'false';
+      else{    
+        delete data['Reduction'];
+        delete data['Extension'];   
+        data[element.name] = element.value;
+      }
+
+
   }
 
+  if(!element.checked && isCheckbox(element)){
+       if(!(Reduction.checked) && !(Extension.checked))
+        {
+          console.log(1234);
+          data.cut = "false";
+          data.cuts = ["false", "null"];
+        }
+        delete data['Reduction'];
+        delete data['Extension'];
+        data[element.name] = 'false';
+  }
 
   return data;
 }, {});
@@ -65,14 +97,14 @@ const handleFormSubmit = event => {
   event.preventDefault();
   
   // Call our function to get the form data.
-  const data = formToJSON(form.elements);
+  var data = formToJSON(form.elements);
 
   // Demo only: print the form data onscreen as a formatted JSON object.
   const dataContainer = document.getElementsByClassName('results__display')[0];
   
   // Use `JSON.stringify()` to make the output valid, human-readable JSON.
   dataContainer.textContent = JSON.stringify(data, null, "  ");
-  console.log(data);
+  data = {};
   
   // ...this is where we’d actually do something with the form data...
 };
@@ -85,4 +117,3 @@ const handleFormSubmit = event => {
 
   const form = document.getElementsByClassName('ATP-form')[0];
   form.addEventListener('submit', handleFormSubmit);
-  
