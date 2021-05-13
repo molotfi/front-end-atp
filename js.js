@@ -107,7 +107,7 @@ const handleFormSubmit = event => {
   
   // Use `JSON.stringify()` to make the output valid, human-readable JSON.
   dataContainer.textContent = JSON.stringify(data, null, "  ");
-  console.log(data);
+  console.log(dataContainer);
   data = {};
   
   // ...this is where we’d actually do something with the form data...
