@@ -1,6 +1,6 @@
 import init, { run } from './pkg/webassembly.js'
 
-async function webassembly(json) {
+export async function webassembly(json) {
     await init()
     let proof = run(json)
     console.log(proof)
