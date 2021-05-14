@@ -7,7 +7,7 @@ export async function webassembly(json) {
     return false
 }
 
-async function debug() {
+export async function debug() {
     let debugJSON = '{' +
         '"cut": true, ' +
         '"cuts": {' +
@@ -22,5 +22,5 @@ async function debug() {
     webassembly(debugJSON)
 }
 
-debug()
 window.webassembly = webassembly
+window.debug = debug
