@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="webassembly.js" type="module"></script>
+  <script src="webassembly.js"></script>
   <script src="inputHandling.js"></script>
   <script src="inputExamples.js"></script>
 
@@ -32,6 +32,9 @@ h1 {text-align: center;}
    float:right;
 }
 
+p {display:inline}
+
+
 </style>
 
 <body>
@@ -41,7 +44,7 @@ h1 {text-align: center;}
   <form class="ATP-form" id="ATP-form">
 
     <div class="testing">
-      <p>Enter the following inputs</p>
+      <p>Choose from the following options:</p>
     </div>
 
     <div class="ATPinput">
@@ -80,24 +83,17 @@ h1 {text-align: center;}
       <label class="ATPinput" for="Sort">Sort</label>
 </div>
     </div>
-   <!--  <div class="contact-form__input-group">
-      <label class="contact-form__label" for="subject">How can I help you?</label>
-      <select class="contact-form__input contact-form__input--select" id="subject" name="subject">
-        <option>I have a problem.</option>
-        <option>I have a general question.</option>
-      </select>
-    </div> -->
+
     <div class="ATPinput">
-    <!-- <label class="contact-form__label" for="message">Enter a Problem</label> -->
     <textarea class="ATPinput" placeholder="fof(hm, axiom, ![X]: (human(X) => mortal(X))).
 fof(hs, axiom, human(sokrates)).
 fof(ms, conjecture, mortal(sokrates))." id="problem" name="problem" rows="8" cols="75" required></textarea>
     </div>
-    <!-- <input name="secret" type="hidden" value="1b3a9374-1a8e-434e-90ab-21aa7b9b80e7"/> -->
-    <button class="btn proof" type="submit">Proof</button>
+    <!-- <input name="secret" type="hidden" value="1b3a9374-1a8e-434e-90ab-21aa7b9b80e7"/> -->  
 
-  </form>
-  <button class="btn clear" id="add" class="fa fa-folder" onclick= "clearInput()"> Clear</button>
+    <p style="float: left; width: 100px"><button id="proofbtn" class="btn proof" type="submit">Proof</button></p>
+</form>
+    <p style="float: left; width: 10px"><button class="btn clear" id="add" onclick= "clearInput()"> Clear</button></p>
 
 
 <table>
