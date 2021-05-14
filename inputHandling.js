@@ -20,8 +20,8 @@ $(function enableInput() {
             $("#Extension2").removeAttr("disabled");
             $("#Extension2").focus();
         } else {
-            document.getElementById('Extension1').value = ''; 
-            document.getElementById('Extension2').value = ''; 
+            //document.getElementById('Extension1').value = ''; 
+            //document.getElementById('Extension2').value = ''; 
             $("#Extension1").attr("disabled", "disabled");
             $("#Extension2").attr("disabled", "disabled");
         }

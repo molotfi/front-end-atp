@@ -41,49 +41,54 @@ const formToJSON = elements => [].reduce.call(elements, (data, element) => {
       {
         if(Reduction.checked && !Extension.checked)
         {
-          delete data['Reduction'];
-          delete data['Extension'];
-          data.cut = "true";
-          data.cuts = [Reduction.value, "null"];
+          //delete data['Reduction'];
+          //delete data['Extension'];
+          data.cut = true;
+          data.cuts =({Reduction: true, Extension: null });
+          Reduction.value = true;
+          Extension.value = false;
         }
         if(Extension.checked && !Reduction.checked)
         {
-          delete data['Reduction'];
-          delete data['Extension'];
-          data.cut = "true";
-          data.cuts = [Reduction.value,element.value];
+          // delete data['Reduction'];
+          // delete data['Extension'];
+          data.cut = true;
+          data.cuts =({Reduction: false, Extension: element.value });
+          Reduction.value = false;
+          Extension.value = true;
         }
         if((Extension.checked) && (Reduction.checked))
         {
-          delete data['Reduction'];
-          delete data['Extension'];
-          data.cut = "true";
-          data.cuts = [Reduction.value,element.value];
-          //'Extension: '.concat((data[element.name] = element.value))
+          // delete data['Reduction'];
+          // delete data['Extension'];
+          data.cut = true;
+          data.cuts =({Reduction: true, Extension: element.value });
         }
       }
-      if(!LSD.checked)
-      {
-        LSD.value = "false";
+      if(LSD.checked && element.name == "lim"){
+        data.lim = Number(LSD1.value);
       }
-      else{    
-        delete data['Reduction'];
-        delete data['Extension'];   
+      if(Conjunctive.checked && element.name == "conj"){
+        data.conj = true;
+      }
+      if(Sort.checked && element.name == "nopaths"){
+        data.Sort = true;
+      }
+      if(element.name == "problem")
+      {
         data[element.name] = element.value;
       }
-
-
   }
 
   if(!element.checked && isCheckbox(element)){
        if(!(Reduction.checked) && !(Extension.checked))
         { 
-          data.cut = "false";
-          data.cuts = ["false", "null"];
+          data.cut = false;
+          data.cuts =({Reduction: false, Extension: null });
         }
         delete data['Reduction'];
         delete data['Extension'];
-        data[element.name] = 'false';
+        data[element.name] = false;
   }
 
   return data;
@@ -107,7 +112,6 @@ const handleFormSubmit = event => {
   
   // Use `JSON.stringify()` to make the output valid, human-readable JSON.
   dataContainer.textContent = JSON.stringify(data, null, "  ");
-  console.log(dataContainer);
   data = {};
   
   // ...this is where we’d actually do something with the form data...
