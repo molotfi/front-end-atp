@@ -112,7 +112,7 @@ const handleFormSubmit = event => {
   
   // Use `JSON.stringify()` to make the output valid, human-readable JSON.
   dataContainer.textContent = JSON.stringify(data, null, "  ");
-  webassembly(json);
+  webassembly(data);
   data = {};
   
   
