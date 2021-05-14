@@ -71,29 +71,23 @@ h1,h2 {
   border-radius: 25px;    
 }
 
+.proof{
+  background-color: black;
+  color: white;
+}
+
 /* Darker background on mouse-over */
 .btn:hover {
   background-color: white;
 }
 
-.clearbtn {
-  background-color: gray; /* Blue background */
-  border: none; /* Remove borders */
-  color: black; /* White text */
-  padding: 1px 20px; /* Some padding */
-  font-size: 16px; /* Set a font size */
-  cursor: pointer; /* Mouse pointer on hover */
-
-  width: 90px;
-  height: 30px;
-  cursor: pointer;
-  border-radius: 25px;
-  z-index: 1;
+.clear:hover{
+  background-color: white;
 }
 
-/* Darker background on mouse-over */
-.clearbtn:hover {
-  background-color: white;
+.proof:hover{
+  background-color: red;
+  color: black;
 }
 
 

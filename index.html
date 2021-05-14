@@ -94,10 +94,10 @@ fof(hs, axiom, human(sokrates)).
 fof(ms, conjecture, mortal(sokrates))." id="problem" name="problem" rows="8" cols="75" required></textarea>
     </div>
     <!-- <input name="secret" type="hidden" value="1b3a9374-1a8e-434e-90ab-21aa7b9b80e7"/> -->
-    <button class="btn" type="submit">Proof</button>
+    <button class="btn proof" type="submit">Proof</button>
 
   </form>
-  <button class="clearbtn" id="add" class="fa fa-folder" onclick= "clearInput()"> Clear</button>
+  <button class="btn clear" id="add" class="fa fa-folder" onclick= "clearInput()"> Clear</button>
 
 
 <table>
@@ -110,18 +110,18 @@ fof(ms, conjecture, mortal(sokrates))." id="problem" name="problem" rows="8" col
     <td><code>fof(hm, axiom, ![X]: (human(X) => mortal(X)))</code></td>
     <td>Explanation</td>
     <td> 
-    <button class="btn"onclick= "loadExampleInput1()" id="Example1"><img src="icons/upload.svg"></button>
+    <button class="btn"onclick= "loadExampleInput1()" id="Example1"><img src="./icons/upload.svg"></button>
     </td>
   </tr>
   <tr>
     <td><code>fof(p1, axiom, (![X]: (~p(X) | (?[Y]: q(X,Y)))))</code></td>
     <td>Explantaion</td>
-    <td><button class="btn"onclick= "loadExampleInput2()" id="Example2"><img src="icons/upload.svg"></button></td>
+    <td><button class="btn"onclick= "loadExampleInput2()" id="Example2"><img src="./icons/upload.svg"></button></td>
   </tr>
   <tr>
     <td><code>fof(p1, axiom, (![X]: (~p(X) | (?[Y]: q(X,Y)))))</code></td>
     <td>Explanation</td>
-    <td><button class="btn"onclick= "loadExampleInput3()" id="Example3"><img src="icons/upload.svg"></button></td>
+    <td><button class="btn"onclick= "loadExampleInput3()" id="Example3"><img src="./icons/upload.svg"></button></td>
   </tr>
 </table>
 
