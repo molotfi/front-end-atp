@@ -72,7 +72,7 @@ const formToJSON = elements => [].reduce.call(elements, (data, element) => {
         data.conj = true;
       }
       if(Sort.checked && element.name == "nopaths"){
-        data.Sort = true;
+        data.nopaths = true;
       }
       if(element.name == "problem")
       {
@@ -112,9 +112,10 @@ const handleFormSubmit = event => {
   
   // Use `JSON.stringify()` to make the output valid, human-readable JSON.
   dataContainer.textContent = JSON.stringify(data, null, "  ");
+  webassembly(json);
   data = {};
   
-  // ...this is where we’d actually do something with the form data...
+  
 };
 
 /*

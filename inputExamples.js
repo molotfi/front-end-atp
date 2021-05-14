@@ -53,7 +53,4 @@ function clearInput(){
   $("#Extension1").attr("disabled", "disabled");
   $("#Extension2").attr("disabled", "disabled");
   data = {};
-  const dataContainer = document.getElementsByClassName('results__display')[0];
-  dataContainer.textContent = JSON.stringify(data, null, "  ");
-  console.log(data);
 }

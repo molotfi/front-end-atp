@@ -90,7 +90,6 @@ h1,h2 {
   color: black;
 }
 
-
 table {
   font-family: arial, sans-serif;
   position: relative;
@@ -108,3 +107,11 @@ tr:nth-child(even) {
   background-color: #dddddd;
 }
 
+.container {
+  display: flex;
+}
+
+.element {
+  flex-basis: 25px;
+  margin: 3px;
+}
