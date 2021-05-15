@@ -44,7 +44,7 @@ const formToJSON = elements => [].reduce.call(elements, (data, element) => {
           //delete data['Reduction'];
           //delete data['Extension'];
           data.cut = true;
-          data.cuts =({Reduction: true, Extension: null });
+          data.cuts =({reduction: true, extension: null });
           Reduction.value = true;
           Extension.value = false;
         }
@@ -53,7 +53,7 @@ const formToJSON = elements => [].reduce.call(elements, (data, element) => {
           // delete data['Reduction'];
           // delete data['Extension'];
           data.cut = true;
-          data.cuts =({Reduction: false, Extension: element.value });
+          data.cuts =({reduction: false, extension: element.value });
           Reduction.value = false;
           Extension.value = true;
         }
@@ -62,17 +62,17 @@ const formToJSON = elements => [].reduce.call(elements, (data, element) => {
           // delete data['Reduction'];
           // delete data['Extension'];
           data.cut = true;
-          data.cuts =({Reduction: true, Extension: element.value });
+          data.cuts =({reduction: true, extension: element.value });
         }
-      }
-      if(LSD.checked && element.name == "lim"){
-        data.lim = Number(LSD1.value);
       }
       if(Conjunctive.checked && element.name == "conj"){
         data.conj = true;
       }
       if(Sort.checked && element.name == "nopaths"){
         data.nopaths = true;
+      }
+      if(LSD.checked && element.name == "lim"){
+        data.lim = Number(LSD1.value);
       }
       if(element.name == "problem")
       {
@@ -85,6 +85,18 @@ const formToJSON = elements => [].reduce.call(elements, (data, element) => {
         { 
           data.cut = false;
           data.cuts =({Reduction: false, Extension: null });
+        }
+        if(!Conjunctive.checked)
+        {
+          data.conj = false;
+        }
+        if(!Sort.checked)
+        {
+          data.nopaths = false;
+        }
+        if(!LSD.checked)
+        {
+          data.lim = null;
         }
         delete data['Reduction'];
         delete data['Extension'];
@@ -108,13 +120,28 @@ const handleFormSubmit = event => {
   var data = formToJSON(form.elements);
 
   // Demo only: print the form data onscreen as a formatted JSON object.
-  const dataContainer = document.getElementsByClassName('results__display')[0];
+  const dataContainer = document.getElementsByClassName('JSONdata')[0];
   
   // Use `JSON.stringify()` to make the output valid, human-readable JSON.
   dataContainer.textContent = JSON.stringify(data, null, "  ");
-  webassembly(data);
+
+  let debugJSON = '{' +
+  '"cut": true, ' +
+  '"cuts": {' +
+      '"reduction": true, ' +
+      '"extension": "Inclusive"' +
+  '}, ' +
+  '"conj": false, ' +
+  '"nopaths": false, ' +
+  '"lim": null, ' +
+  '"problem": "% This problem corresponds to the formula F# given in Section 2 of the article\\n% \\"nanoCoP: A Non-clausal Connection Prover\\" by Jens Otten,\\n% published at IJCAR 2016.\\nfof(1, conjecture, (\\n  ( p(a)\\n  & ( ( (q(f(f(c))) & ![X]: (q(f(X)) => q(X)))\\n      & ~q(c)\\n      )\\n    | ![Y]: (p(Y) => p(g(Y)))\\n    )\\n  ) => ?[Z]: p(g(g(Z))))).\\n\\n% (~((q(f(f(c))) & ![X]: (q(f(X)) => q(X))) => q(c))))).\\n\\n"' +
+  '}'
+  var oke = JSON.stringify(data);
+  console.log(oke,1);
+  console.log(debugJSON,2);
+  webassembly(oke)
+
   data = {};
-  
   
 };
 

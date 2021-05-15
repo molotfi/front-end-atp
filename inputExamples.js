@@ -52,5 +52,6 @@ function clearInput(){
   document.getElementById('Extension2').checked = false; 
   $("#Extension1").attr("disabled", "disabled");
   $("#Extension2").attr("disabled", "disabled");
+  $('#myText').html('');
   data = {};
 }

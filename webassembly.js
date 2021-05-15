@@ -3,8 +3,9 @@ import init, { run } from './pkg/webassembly.js'
 export async function webassembly(json) {
     await init()
     let proof = run(json)
-    console.log(proof)
-    return false
+    console.log(proof);
+    document.getElementById("myText").innerHTML = proof;
+    return proof
 }
 
 export async function debug() {
