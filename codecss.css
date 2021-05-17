@@ -56,6 +56,10 @@ h1,h2 {
   border-bottom: 1px solid $color-darkest;
   overflow: hidden;
 }
+
+
+
+
   
 .btn {
   background-color: gray; /* Blue background */
@@ -70,6 +74,7 @@ h1,h2 {
   cursor:pointer;
   border-radius: 25px;    
 }
+
 
 .proof{
   background-color: black;
@@ -114,4 +119,8 @@ tr:nth-child(even) {
 .element {
   flex-basis: 25px;
   margin: 3px;
+}
+
+.confirm {
+ color: green;
 }

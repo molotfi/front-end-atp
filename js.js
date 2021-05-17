@@ -44,7 +44,7 @@ const formToJSON = elements => [].reduce.call(elements, (data, element) => {
           //delete data['Reduction'];
           //delete data['Extension'];
           data.cut = true;
-          data.cuts =({reduction: true, extension: null });
+          data.cuts ={reduction: true, extension: null };
           Reduction.value = true;
           Extension.value = false;
         }
@@ -77,6 +77,7 @@ const formToJSON = elements => [].reduce.call(elements, (data, element) => {
       if(element.name == "problem")
       {
         data[element.name] = element.value;
+        temp.push(element.value);
       }
   }
 
@@ -120,30 +121,64 @@ const handleFormSubmit = event => {
   var data = formToJSON(form.elements);
 
   // Demo only: print the form data onscreen as a formatted JSON object.
-  const dataContainer = document.getElementsByClassName('JSONdata')[0];
+  //const dataContainer = document.getElementsByClassName('JSONdata')[0];
   
   // Use `JSON.stringify()` to make the output valid, human-readable JSON.
-  dataContainer.textContent = JSON.stringify(data, null, "  ");
+  //dataContainer.textContent = JSON.stringify(data, null, "  ");
 
-  let debugJSON = '{' +
-  '"cut": true, ' +
-  '"cuts": {' +
-      '"reduction": true, ' +
-      '"extension": "Inclusive"' +
-  '}, ' +
-  '"conj": false, ' +
-  '"nopaths": false, ' +
-  '"lim": null, ' +
-  '"problem": "% This problem corresponds to the formula F# given in Section 2 of the article\\n% \\"nanoCoP: A Non-clausal Connection Prover\\" by Jens Otten,\\n% published at IJCAR 2016.\\nfof(1, conjecture, (\\n  ( p(a)\\n  & ( ( (q(f(f(c))) & ![X]: (q(f(X)) => q(X)))\\n      & ~q(c)\\n      )\\n    | ![Y]: (p(Y) => p(g(Y)))\\n    )\\n  ) => ?[Z]: p(g(g(Z))))).\\n\\n% (~((q(f(f(c))) & ![X]: (q(f(X)) => q(X))) => q(c))))).\\n\\n"' +
-  '}'
-  var oke = JSON.stringify(data);
-  console.log(oke,1);
-  console.log(debugJSON,2);
-  webassembly(oke)
+  var dataJSON = JSON.stringify(data);
+
+  (async () => {
+    var proofout = await webassembly(dataJSON)
+    document.getElementById("output").innerHTML = proofout;
+  })()
 
   data = {};
   
 };
+
+var addProofsToList = [];
+var temp = [];
+var proofs = [];
+
+function addProofToList(){
+  var dataList = formToJSON(form.elements);
+  dataList = JSON.stringify(dataList);
+  addProofsToList.push(dataList);
+  dataList = "";
+  clearInput();
+  document.getElementById("confirm").innerHTML = "Problem added to list";
+  $("#confirm").delay(1000).fadeOut(3000); 
+}
+
+function prooflist(){
+    console.log(addProofsToList);
+    if(addProofsToList.length == 0)
+    {
+      document.getElementById("error").innerHTML = "Add problems to the list";
+      $("#error").delay(1000).fadeOut(3000);
+    }
+    else if(temp.length == addProofsToList.length){
+    (async () => {
+      for (let i = 0; i < addProofsToList.length; i++) { 
+      var getSol = await webassembly(addProofsToList[i]);
+      proofs.push(getSol);
+      }
+      //var str = proofs.join("\n" + "///////////////////////////////////////////////////////////////////////" + "\n" + "\n");
+      document.getElementById("checkbelow").innerHTML = "Check below for table with answers";
+      $("#checkbelow").delay(1000).fadeOut(3000); 
+      
+      for (var j = 0; j < proofs.length; j++) {
+        $(outputList).append("<tr><td>" + "<textarea rows=8 cols=75>" + temp[j] + "</textarea>" + "<textarea rows=8 cols=75>" + proofs[j] + "</textarea>" + "</td></tr>");
+      }
+      temp.length = 0;
+      proofs.length = 0;
+      addProofsToList.length = 0;
+
+    })()
+  }
+}
+
 
 /*
  * This is where things actually get started. We find the form element using
