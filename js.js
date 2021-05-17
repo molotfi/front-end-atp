@@ -153,7 +153,7 @@ function addProofToList(){
 
 function prooflist(){
     console.log(addProofsToList);
-    if(addProofsToList.length == 0)
+    if(addProofsToList.length == 0 || temp.length == 0)
     {
       document.getElementById("error").innerHTML = "Add problems to the list";
       $("#error").delay(1000).fadeOut(3000);
