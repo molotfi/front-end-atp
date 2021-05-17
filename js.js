@@ -157,6 +157,9 @@ function prooflist(){
     {
       document.getElementById("error").innerHTML = "Add problems to the list";
       $("#error").delay(1000).fadeOut(3000);
+      temp.length = 0;
+      proofs.length = 0;
+      addProofsToList.length = 0;
     }
     else if(temp.length == addProofsToList.length){
     (async () => {
@@ -175,7 +178,7 @@ function prooflist(){
       proofs.length = 0;
       addProofsToList.length = 0;
 
-      
+
     })()
   }
 }
