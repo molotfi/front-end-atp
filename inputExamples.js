@@ -78,6 +78,7 @@ function loadExampleInput3() {
 	$('#problem').val(example3Text);
 }
 
+
   
 function clearInput(){
   $('.ATPinput').prop('checked', false);
