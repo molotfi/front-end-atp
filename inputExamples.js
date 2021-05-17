@@ -95,6 +95,7 @@ function clearInput(){
   $("#Extension1").attr("disabled", "disabled");
   $("#Extension2").attr("disabled", "disabled");
 
+  
   data = {};
   console.log(temp)
   console.log(proofs)
