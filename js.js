@@ -77,7 +77,9 @@ const formToJSON = elements => [].reduce.call(elements, (data, element) => {
       if(element.name == "problem")
       {
         data[element.name] = element.value;
-        temp.push(element.value);
+        if(addFunctionClicked){
+          temp.push(element.value);
+        }
       }
   }
 
@@ -132,16 +134,16 @@ const handleFormSubmit = event => {
     var proofout = await webassembly(dataJSON)
     document.getElementById("output").innerHTML = proofout;
   })()
-
   data = {};
-  
 };
 
 var addProofsToList = [];
 var temp = [];
 var proofs = [];
+var addFunctionClicked = false;
 
 function addProofToList(){
+  addFunctionClicked = true;
   var dataList = formToJSON(form.elements);
   dataList = JSON.stringify(dataList);
   addProofsToList.push(dataList);
@@ -149,6 +151,7 @@ function addProofToList(){
   clearInput();
   document.getElementById("confirm").innerHTML = "Problem added to list";
   $("#confirm").delay(1000).fadeOut(3000); 
+  addFunctionClicked = false;
 }
 
 function prooflist(){

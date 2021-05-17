@@ -95,10 +95,15 @@ function clearInput(){
   $("#Extension1").attr("disabled", "disabled");
   $("#Extension2").attr("disabled", "disabled");
 
+
   data = {};
+  console.log("temp", temp)
+  console.log("proofs", proofs)
+  console.log("list",addProofsToList)
 }
 
 function clearArrays(){
+	console.log("OKEOKEOKEOKEOKEOKEOKEOKEO")
 	temp.length = [];
 	proofs.length = [];
 	addProofsToList.length = [];
