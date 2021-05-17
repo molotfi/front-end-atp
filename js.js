@@ -175,6 +175,7 @@ function prooflist(){
       proofs.length = 0;
       addProofsToList.length = 0;
 
+      
     })()
   }
 }
