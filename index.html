@@ -43,8 +43,8 @@ p {display:inline}
 <body>
 
 <section class="content">
-  <h1 class="content__heading" onclick="debug()">Automated Theorem Prover</h1>
-  <form class="ATP-form" id="ATP-form">
+  <h1 class="content__heading" >Automated Theorem Prover</h1>
+  <form class="ATP-form" id="ATP-form" style = "position:relative; right:450px; top:2px;">
 
     <div class="testing">
       <p>Choose from the following options:</p>
@@ -107,13 +107,16 @@ fof(ms, conjecture, mortal(sokrates))." id="problem" name="problem" rows="8" col
     <!-- <textarea class="JSONdata" readonly id="JSONdata" rows="8" cols="75">
     </textarea> -->
 </form>
-    <p style="float: left; width: 10px"><button class="btn clear" id="add" onclick= "clearInput(),clearArrays()"> Clear</button></p>
+    <!-- <p style="float: left; width: 10px"><button class="btn clear" id="add" onclick= "clearInput(),clearArrays()"> Clear</button></p>
     <p style="float: right; width: 100px"><button class="btn add" id="addJSON" onclick= "addProofToList()"> ADD</button></p>
-    <p style="float: right; width: 225px"><button class="btn add" id="addJSON" onclick= "prooflist()"> List</button></p>
+    <p style="float: right; width: 225px"><button class="btn add" id="addJSON" onclick= "prooflist()"> List</button></p> -->
+
+    <p style = "position:relative; right:450px; top:5px;"><button class="btn clear" id="add" onclick= "clearInput(),clearArrays()"> Clear</button></p>
+    <p style = "position:relative; right:400px; top:5px;"><button class="btn add" id="addJSON" onclick= "addProofToList()">Add to</button></p>
+    <p style = "position:relative; right:350px; top:5px;"><button class="btn add" id="addJSON" onclick= "prooflist(),showTable()"> List</button></p>
 
 
-
-<table>
+<table class="exampleTable" id="exampleTable" style = "right:450px; bottom: -15px;">
   <tr>
     <th>Problem</th>
     <!-- <th>test</th> -->
@@ -138,20 +141,22 @@ fof(ms, conjecture, mortal(sokrates))." id="problem" name="problem" rows="8" col
   </tr>
 </table>
 
+
+<div  style="position:relative; left:300px; bottom: 590px; max-height:335px; width:750px; overflow:auto">
+
+<table style="visibility:hidden;" class="outputListTable" id="table3">
+  <tr>
+    <th>Output of List</th>
+  </tr>
+  <td id="divdiv"  style="border: 1px solid black";></td> 
+</table>  
+
+</div>
+
+
 </section>
-
-<table id="outputList">
-</table>
-
-<!-- <div class="results">
-  <h2 class="results__heading">Form Data</h2>
-  <pre class="results__display-wrapper"><code class="results__display"></code></pre>
-</div> -->
- 
 </body>
-
 <script src="js.js"></script>
-
 </html>
 
 

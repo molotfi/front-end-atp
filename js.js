@@ -132,6 +132,7 @@ const handleFormSubmit = event => {
 
   (async () => {
     var proofout = await webassembly(dataJSON)
+    console.log(proofout)
     document.getElementById("output").innerHTML = proofout;
   })()
   data = {};
@@ -149,17 +150,27 @@ function addProofToList(){
   addProofsToList.push(dataList);
   dataList = "";
   clearInput();
-  document.getElementById("confirm").innerHTML = "Problem added to list";
-  $("#confirm").delay(1000).fadeOut(3000); 
+  if(addProofsToList.length == 0 || temp.length == 0 || (temp.length != addProofsToList.length))
+  {
+    document.getElementById("confirm").innerHTML = "Error: Add problems to the list";
+    //$("#confirm").delay(1000).fadeOut(3000);
+    temp.length = 0;
+    proofs.length = 0;
+    addProofsToList.length = 0;
+  }
+  else{
+    document.getElementById("confirm").innerHTML = "Add succesfull! Problem added to list";
+  }
+  //$("#confirm").delay(1000).fadeOut(3000); 
   addFunctionClicked = false;
 }
 
 function prooflist(){
     
-    if(addProofsToList.length == 0 || temp.length == 0)
+    if(addProofsToList.length == 0 || temp.length == 0 || (temp.length != addProofsToList.length))
     {
-      document.getElementById("error").innerHTML = "Add problems to the list";
-      $("#error").delay(1000).fadeOut(3000);
+      document.getElementById("confirm").innerHTML = "Error: Add problems to the list";
+      //$("#confirm").delay(1000).fadeOut(3000);
       temp.length = 0;
       proofs.length = 0;
       addProofsToList.length = 0;
@@ -171,11 +182,12 @@ function prooflist(){
       proofs.push(getSol);
       }
       //var str = proofs.join("\n" + "///////////////////////////////////////////////////////////////////////" + "\n" + "\n");
-      document.getElementById("checkbelow").innerHTML = "Check below for table with answers";
-      $("#checkbelow").delay(1000).fadeOut(3000); 
+      document.getElementById("confirm").innerHTML = "Succes! Answer will show up now";
+      //$("#confirm").delay(1000).fadeOut(3000); 
       
       for (var j = 0; j < proofs.length; j++) {
-        $(outputList).append("<tr><td>" + "<textarea rows=8 cols=75>" + temp[j] + "</textarea>" + "<textarea rows=8 cols=75>" + proofs[j] + "</textarea>" + "</td></tr>");
+        $(divdiv).append("Problem: " + (j + 1));
+        $(divdiv).append("<td>" + "<textarea rows=8 cols=75>" + temp[j] + "</textarea>" + "<textarea rows=8 cols=75>" + proofs[j] + "</textarea>" + "</td>");
       }
       temp.length = 0;
       proofs.length = 0;
