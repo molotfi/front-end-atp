@@ -65,6 +65,7 @@ const formToJSON = elements => [].reduce.call(elements, (data, element) => {
           data.cuts =({reduction: true, extension: element.value });
         }
       }
+
       if(Conjunctive.checked && element.name == "conj"){
         data.conj = true;
       }
@@ -135,8 +136,8 @@ const handleFormSubmit = event => {
       var proofout = await webassembly(dataJSON);
       document.getElementById("output").innerHTML = proofout;
     } catch(err) {
-      console.log(err)
-      document.getElementById("confirm").innerHTML = "Error: No solution available, try different settings";
+      //console.log(err)
+      document.getElementById("confirm").innerHTML = "Error: No proof found";
     }
     
   })()
