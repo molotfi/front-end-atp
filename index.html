@@ -45,8 +45,8 @@ p {display:inline}
 
 <section class="content">
   <h1 class="content__heading" >Automated Theorem Prover</h1>
-  <form class="ATP-form" id="ATP-form" style = "position:relative; right:82%; top:2px;">
-
+  <!-- <form class="ATP-form" id="ATP-form" style = "position:relative; right:82%; top:2px;"> -->
+    <form class="ATP-form" id="ATP-form">
 
     <div class="testing">
       <p>Choose from the following options:</p>
@@ -107,16 +107,10 @@ fof(ms, conjecture, mortal(sokrates))." id="problem" name="problem" rows="8" col
     <textarea class="JSONdata" readonly id="JSONdata" rows="8" cols="75">
     </textarea>
 </form>
-    <!-- <p style="float: left; width: 10px"><button class="btn clear" id="add" onclick= "clearInput(),clearArrays()"> Clear</button></p>
-    <p style="float: right; width: 100px"><button class="btn add" id="addJSON" onclick= "addProofToList()"> ADD</button></p>
-    <p style="float: right; width: 225px"><button class="btn add" id="addJSON" onclick= "prooflist()"> List</button></p> -->
-
-    <p style = "position:relative; right:82%; top:5px;"><button class="btn clear" id="add" onclick= "clearInput(),clearArrays()"> Clear</button></p>
-    <p style = "position:relative; right:61%; top:5px;"><button class="btn add" id="addJSON" onclick= "addProofToList()">Add to list</button></p>
-    <p style = "position:relative; right:44%; top:5px;"><button class="btn add" id="addJSON" onclick= "prooflist()">List</button></p>
+    <p><button class="btn clear" id="add" onclick= "clearInput()"> Clear</button></p>
 
 
-<table class="exampleTable" id="exampleTable" style = "right:82%; bottom: -15px;">
+<table class="exampleTable" id="exampleTable">
   <tr>
     <th>Problem</th>
     <!-- <th>test</th> -->
@@ -140,18 +134,6 @@ fof(ms, conjecture, mortal(sokrates))." id="problem" name="problem" rows="8" col
     <td><button class="btn"onclick= "loadExampleInput3()" id="Example3"><img src="./icons/upload.svg"></button></td>
   </tr>
 </table>
-
-
-<div  style="position:relative; left:56.5%; bottom: 590px; max-height:335px; width:750px; overflow:auto">
-
-<table style="visibility:hidden;" class="outputListTable" id="table3">
-  <tr>
-    <th>Output of List</th>
-  </tr>
-  <td id="divdiv"  style="border: 1px solid black";></td> 
-</table>  
-
-</div>
 
 
 </section>

@@ -95,14 +95,6 @@ function clearInput(){
   $("#Extension1").attr("disabled", "disabled");
   $("#Extension2").attr("disabled", "disabled");
 
-  document.getElementById("table3").style.visibility = "hidden";
-
   data = {};
   document.getElementById("confirm").innerHTML = "";
-}
-
-function clearArrays(){
-	temp = [];
-	proofs = [];
-	addProofsToList = [];
 }
