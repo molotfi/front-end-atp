@@ -87,7 +87,7 @@ const formToJSON = elements => [].reduce.call(elements, (data, element) => {
        if(!(Reduction.checked) && !(Extension.checked))
         { 
           //data.cut = false;
-          data.cuts =({Reduction: false, Extension: null });
+          data.cuts =({reduction: false, extension: null });
         }
         if(!Conjunctive.checked)
         {
