@@ -9,7 +9,6 @@ export async function webassembly(json) {
 
 export async function debug() {
     let debugJSON = '{' +
-        '"cut": true, ' +
         '"cuts": {' +
             '"reduction": true, ' +
             '"extension": "Inclusive"' +

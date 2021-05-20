@@ -4,9 +4,7 @@ use cop::lean::Cuts;
 // might require custom serialization/deserialization
 #[derive(Serialize, Deserialize, Debug)]
 pub struct Query {
-    cut: bool,
-
-    cuts: Option<Cuts>,
+    cuts: Cuts,
 
     pub conj: bool,
 
@@ -21,11 +19,7 @@ pub struct Query {
 
 impl Query {
     pub fn get_cuts(&self) -> Cuts {
-        if self.cut {
-            Cuts::max()
-        } else {
-            self.cuts.unwrap_or_default()
-        }
+        self.cuts
     }
 
     pub fn depths(&self) -> Box<dyn Iterator<Item = usize>> {
