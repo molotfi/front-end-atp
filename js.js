@@ -131,8 +131,7 @@ const handleFormSubmit = event => {
   var dataJSON = JSON.stringify(data);
 
   (async () => {
-    var proofout = await webassembly(dataJSON)
-    console.log(proofout)
+    var proofout = await webassembly(dataJSON)  
     document.getElementById("output").innerHTML = proofout;
   })()
   data = {};
@@ -152,14 +151,14 @@ function addProofToList(){
   clearInput();
   if(addProofsToList.length == 0 || temp.length == 0 || (temp.length != addProofsToList.length))
   {
-    document.getElementById("confirm").innerHTML = "Error: Add problems to the list";
+    document.getElementById("confirm").innerHTML = "Error: No input found!";
     //$("#confirm").delay(1000).fadeOut(3000);
     temp.length = 0;
     proofs.length = 0;
     addProofsToList.length = 0;
   }
   else{
-    document.getElementById("confirm").innerHTML = "Add succesfull! Problem added to list";
+    document.getElementById("confirm").innerHTML = "Added succesfully! Problem added to list";
   }
   //$("#confirm").delay(1000).fadeOut(3000); 
   addFunctionClicked = false;
@@ -169,18 +168,22 @@ function prooflist(){
     
     if(addProofsToList.length == 0 || temp.length == 0 || (temp.length != addProofsToList.length))
     {
-      document.getElementById("confirm").innerHTML = "Error: Add problems to the list";
-      //$("#confirm").delay(1000).fadeOut(3000);
       temp.length = 0;
       proofs.length = 0;
       addProofsToList.length = 0;
+      document.getElementById("confirm").innerHTML = "Error: No input found!";
+      //$("#confirm").delay(1000).fadeOut(3000);
+      return;
     }
-    else if(temp.length == addProofsToList.length){
+    else{
     (async () => {
+      document.getElementById("table3").style.visibility = "visible";
+
       for (let i = 0; i < addProofsToList.length; i++) { 
       var getSol = await webassembly(addProofsToList[i]);
       proofs.push(getSol);
       }
+
       //var str = proofs.join("\n" + "///////////////////////////////////////////////////////////////////////" + "\n" + "\n");
       document.getElementById("confirm").innerHTML = "Succes! Answer will show up now";
       //$("#confirm").delay(1000).fadeOut(3000); 
@@ -189,11 +192,10 @@ function prooflist(){
         $(divdiv).append("Problem: " + (j + 1));
         $(divdiv).append("<td>" + "<textarea rows=8 cols=75>" + temp[j] + "</textarea>" + "<textarea rows=8 cols=75>" + proofs[j] + "</textarea>" + "</td>");
       }
+
       temp.length = 0;
       proofs.length = 0;
       addProofsToList.length = 0;
-
-
     })()
   }
 }
@@ -204,6 +206,5 @@ function prooflist(){
  * its class name, then attach the `handleFormSubmit()` function to the 
  * `submit` event.
  */
-
   const form = document.getElementsByClassName('ATP-form')[0];
   form.addEventListener('submit', handleFormSubmit);
