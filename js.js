@@ -43,7 +43,7 @@ const formToJSON = elements => [].reduce.call(elements, (data, element) => {
         {
           //delete data['Reduction'];
           //delete data['Extension'];
-          data.cut = true;
+          //data.cut = true;
           data.cuts ={reduction: true, extension: null };
           Reduction.value = true;
           Extension.value = false;
@@ -52,7 +52,7 @@ const formToJSON = elements => [].reduce.call(elements, (data, element) => {
         {
           // delete data['Reduction'];
           // delete data['Extension'];
-          data.cut = true;
+          //data.cut = true;
           data.cuts =({reduction: false, extension: element.value });
           Reduction.value = false;
           Extension.value = true;
@@ -61,7 +61,7 @@ const formToJSON = elements => [].reduce.call(elements, (data, element) => {
         {
           // delete data['Reduction'];
           // delete data['Extension'];
-          data.cut = true;
+          //data.cut = true;
           data.cuts =({reduction: true, extension: element.value });
         }
       }
@@ -86,7 +86,7 @@ const formToJSON = elements => [].reduce.call(elements, (data, element) => {
   if(!element.checked && isCheckbox(element)){
        if(!(Reduction.checked) && !(Extension.checked))
         { 
-          data.cut = false;
+          //data.cut = false;
           data.cuts =({Reduction: false, Extension: null });
         }
         if(!Conjunctive.checked)
@@ -123,10 +123,10 @@ const handleFormSubmit = event => {
   var data = formToJSON(form.elements);
 
   // Demo only: print the form data onscreen as a formatted JSON object.
-  //const dataContainer = document.getElementsByClassName('JSONdata')[0];
+  const dataContainer = document.getElementsByClassName('JSONdata')[0];
   
-  // Use `JSON.stringify()` to make the output valid, human-readable JSON.
-  //dataContainer.textContent = JSON.stringify(data, null, "  ");
+  //Use `JSON.stringify()` to make the output valid, human-readable JSON.
+  dataContainer.textContent = JSON.stringify(data, null, "  ");
 
   var dataJSON = JSON.stringify(data);
 
@@ -138,13 +138,6 @@ const handleFormSubmit = event => {
       console.log(err)
       document.getElementById("confirm").innerHTML = "Error: No solution available, try different settings";
     }
-
-
-
-
-
-
-
     
   })()
   data = {};
