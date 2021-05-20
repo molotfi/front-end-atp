@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -44,7 +45,7 @@ p {display:inline}
 
 <section class="content">
   <h1 class="content__heading" >Automated Theorem Prover</h1>
-  <form class="ATP-form" id="ATP-form" style = "position:relative; right:450px; top:2px;">
+  <form class="ATP-form" id="ATP-form" style = "position:relative; right:82%; top:2px;">
 
     <div class="testing">
       <p>Choose from the following options:</p>
@@ -92,8 +93,6 @@ p {display:inline}
 fof(hs, axiom, human(sokrates)).
 fof(ms, conjecture, mortal(sokrates))." id="problem" name="problem" rows="8" cols="75" required></textarea>
 <p style="float: right; width: px" class="confirm" id="confirm"></p>
-<p style="float: right; width: px"  id="error"></p>
-<p style="float: right; width: px"  id="checkbelow"></p>
     </div>
 
     <!-- <input name="secret" type="hidden" value="1b3a9374-1a8e-434e-90ab-21aa7b9b80e7"/> -->  
@@ -111,12 +110,12 @@ fof(ms, conjecture, mortal(sokrates))." id="problem" name="problem" rows="8" col
     <p style="float: right; width: 100px"><button class="btn add" id="addJSON" onclick= "addProofToList()"> ADD</button></p>
     <p style="float: right; width: 225px"><button class="btn add" id="addJSON" onclick= "prooflist()"> List</button></p> -->
 
-    <p style = "position:relative; right:450px; top:5px;"><button class="btn clear" id="add" onclick= "clearInput(),clearArrays()"> Clear</button></p>
-    <p style = "position:relative; right:400px; top:5px;"><button class="btn add" id="addJSON" onclick= "addProofToList()">Add to list</button></p>
-    <p style = "position:relative; right:350px; top:5px;"><button class="btn add" id="addJSON" onclick= "prooflist()">List</button></p>
+    <p style = "position:relative; right:82%; top:5px;"><button class="btn clear" id="add" onclick= "clearInput(),clearArrays()"> Clear</button></p>
+    <p style = "position:relative; right:61%; top:5px;"><button class="btn add" id="addJSON" onclick= "addProofToList()">Add to list</button></p>
+    <p style = "position:relative; right:44%; top:5px;"><button class="btn add" id="addJSON" onclick= "prooflist()">List</button></p>
 
 
-<table class="exampleTable" id="exampleTable" style = "right:450px; bottom: -15px;">
+<table class="exampleTable" id="exampleTable" style = "right:82%; bottom: -15px;">
   <tr>
     <th>Problem</th>
     <!-- <th>test</th> -->
@@ -142,7 +141,7 @@ fof(ms, conjecture, mortal(sokrates))." id="problem" name="problem" rows="8" col
 </table>
 
 
-<div  style="position:relative; left:300px; bottom: 590px; max-height:335px; width:750px; overflow:auto">
+<div  style="position:relative; left:56.5%; bottom: 590px; max-height:335px; width:750px; overflow:auto">
 
 <table style="visibility:hidden;" class="outputListTable" id="table3">
   <tr>

@@ -131,8 +131,21 @@ const handleFormSubmit = event => {
   var dataJSON = JSON.stringify(data);
 
   (async () => {
-    var proofout = await webassembly(dataJSON)  
-    document.getElementById("output").innerHTML = proofout;
+    try {
+      var proofout = await webassembly(dataJSON);
+      document.getElementById("output").innerHTML = proofout;
+    } catch(err) {
+      console.log(err)
+      document.getElementById("confirm").innerHTML = "Error: No solution available, try different settings";
+    }
+
+
+
+
+
+
+
+    
   })()
   data = {};
 };
