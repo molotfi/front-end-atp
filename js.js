@@ -44,7 +44,7 @@ const formToJSON = elements => [].reduce.call(elements, (data, element) => {
           //delete data['Reduction'];
           //delete data['Extension'];
           data.cut = true;
-          data.cuts =({Reduction: true, Extension: null });
+          data.cuts ={reduction: true, extension: null };
           Reduction.value = true;
           Extension.value = false;
         }
@@ -53,7 +53,7 @@ const formToJSON = elements => [].reduce.call(elements, (data, element) => {
           // delete data['Reduction'];
           // delete data['Extension'];
           data.cut = true;
-          data.cuts =({Reduction: false, Extension: element.value });
+          data.cuts =({reduction: false, extension: element.value });
           Reduction.value = false;
           Extension.value = true;
         }
@@ -62,11 +62,8 @@ const formToJSON = elements => [].reduce.call(elements, (data, element) => {
           // delete data['Reduction'];
           // delete data['Extension'];
           data.cut = true;
-          data.cuts =({Reduction: true, Extension: element.value });
+          data.cuts =({reduction: true, extension: element.value });
         }
-      }
-      if(LSD.checked && element.name == "lim"){
-        data.lim = Number(LSD1.value);
       }
       if(Conjunctive.checked && element.name == "conj"){
         data.conj = true;
@@ -74,9 +71,15 @@ const formToJSON = elements => [].reduce.call(elements, (data, element) => {
       if(Sort.checked && element.name == "nopaths"){
         data.nopaths = true;
       }
+      if(LSD.checked && element.name == "lim"){
+        data.lim = Number(LSD1.value);
+      }
       if(element.name == "problem")
       {
         data[element.name] = element.value;
+        if(addFunctionClicked){
+          temp.push(element.value);
+        }
       }
   }
 
@@ -85,6 +88,18 @@ const formToJSON = elements => [].reduce.call(elements, (data, element) => {
         { 
           data.cut = false;
           data.cuts =({Reduction: false, Extension: null });
+        }
+        if(!Conjunctive.checked)
+        {
+          data.conj = false;
+        }
+        if(!Sort.checked)
+        {
+          data.nopaths = false;
+        }
+        if(!LSD.checked)
+        {
+          data.lim = null;
         }
         delete data['Reduction'];
         delete data['Extension'];
@@ -108,21 +123,101 @@ const handleFormSubmit = event => {
   var data = formToJSON(form.elements);
 
   // Demo only: print the form data onscreen as a formatted JSON object.
-  const dataContainer = document.getElementsByClassName('results__display')[0];
+  //const dataContainer = document.getElementsByClassName('JSONdata')[0];
   
   // Use `JSON.stringify()` to make the output valid, human-readable JSON.
-  dataContainer.textContent = JSON.stringify(data, null, "  ");
-  webassembly(data);
+  //dataContainer.textContent = JSON.stringify(data, null, "  ");
+
+  var dataJSON = JSON.stringify(data);
+
+  (async () => {
+    try {
+      var proofout = await webassembly(dataJSON);
+      document.getElementById("output").innerHTML = proofout;
+    } catch(err) {
+      console.log(err)
+      document.getElementById("confirm").innerHTML = "Error: No solution available, try different settings";
+    }
+
+
+
+
+
+
+
+    
+  })()
   data = {};
-  
-  
 };
+
+var addProofsToList = [];
+var temp = [];
+var proofs = [];
+var addFunctionClicked = false;
+
+function addProofToList(){
+  addFunctionClicked = true;
+  var dataList = formToJSON(form.elements);
+  dataList = JSON.stringify(dataList);
+  addProofsToList.push(dataList);
+  dataList = "";
+  clearInput();
+  if(addProofsToList.length == 0 || temp.length == 0 || (temp.length != addProofsToList.length))
+  {
+    document.getElementById("confirm").innerHTML = "Error: No input found!";
+    //$("#confirm").delay(1000).fadeOut(3000);
+    temp.length = 0;
+    proofs.length = 0;
+    addProofsToList.length = 0;
+  }
+  else{
+    document.getElementById("confirm").innerHTML = "Added succesfully! Problem added to list";
+  }
+  //$("#confirm").delay(1000).fadeOut(3000); 
+  addFunctionClicked = false;
+}
+
+function prooflist(){
+    
+    if(addProofsToList.length == 0 || temp.length == 0 || (temp.length != addProofsToList.length))
+    {
+      temp.length = 0;
+      proofs.length = 0;
+      addProofsToList.length = 0;
+      document.getElementById("confirm").innerHTML = "Error: No input found!";
+      //$("#confirm").delay(1000).fadeOut(3000);
+      return;
+    }
+    else{
+    (async () => {
+      document.getElementById("table3").style.visibility = "visible";
+
+      for (let i = 0; i < addProofsToList.length; i++) { 
+      var getSol = await webassembly(addProofsToList[i]);
+      proofs.push(getSol);
+      }
+
+      //var str = proofs.join("\n" + "///////////////////////////////////////////////////////////////////////" + "\n" + "\n");
+      document.getElementById("confirm").innerHTML = "Succes! Answer will show up now";
+      //$("#confirm").delay(1000).fadeOut(3000); 
+      
+      for (var j = 0; j < proofs.length; j++) {
+        $(divdiv).append("Problem: " + (j + 1));
+        $(divdiv).append("<td>" + "<textarea rows=8 cols=75>" + temp[j] + "</textarea>" + "<textarea rows=8 cols=75>" + proofs[j] + "</textarea>" + "</td>");
+      }
+
+      temp.length = 0;
+      proofs.length = 0;
+      addProofsToList.length = 0;
+    })()
+  }
+}
+
 
 /*
  * This is where things actually get started. We find the form element using
  * its class name, then attach the `handleFormSubmit()` function to the 
  * `submit` event.
  */
-
   const form = document.getElementsByClassName('ATP-form')[0];
   form.addEventListener('submit', handleFormSubmit);

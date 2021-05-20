@@ -21,7 +21,6 @@ $color-darkest: #2a2f2c;
 
 /* Set up fonts, colors and all that jazz. */
 body {
-
   background: #cdcfcf;
   color: $color-gray-light;
   font-family: 'Open Sans', sans-serif;
@@ -30,6 +29,8 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  border: 1px solid transparent;
+  padding-bottom: 20px;
 }
 
 /* Headings use a different font because they’re hipsters. */
@@ -41,6 +42,7 @@ h1,h2 {
 }
 
 /* Set up general layout rules for outer containers. */
+
 .content,.results {
   width: 90vw;
   max-width: 550px;
@@ -56,6 +58,10 @@ h1,h2 {
   border-bottom: 1px solid $color-darkest;
   overflow: hidden;
 }
+
+
+
+/* proof button */
   
 .btn {
   background-color: gray; /* Blue background */
@@ -76,7 +82,13 @@ h1,h2 {
   color: white;
 }
 
-/* Darker background on mouse-over */
+.add{
+  width: 120px;
+  height: 30px;
+}
+
+/* click buttons Darker background on mouse-over */
+
 .btn:hover {
   background-color: white;
 }
@@ -90,16 +102,18 @@ h1,h2 {
   color: black;
 }
 
-table {
+/* table of examples */
+
+.exampleTable{
   font-family: arial, sans-serif;
   position: relative;
   border-collapse: collapse;
-  width: 150%;
+  width: 275%;
 }
 
-td, th {
+#exampleTable,td, th {
   border: 1px solid #dddddd;
-  text-align: left;
+  text-align: center;
   padding: 8px;
 }
 
@@ -107,11 +121,45 @@ tr:nth-child(even) {
   background-color: #dddddd;
 }
 
-.container {
+/* .container {
   display: flex;
-}
+} */
 
-.element {
+/* until here */
+
+/* .element {
   flex-basis: 25px;
   margin: 3px;
+} */
+
+.confirm {
+ color: blue;
+}
+
+
+/* Table for listoutput */
+
+#outputListTable{
+  display: inline-block; 
+  font-family: arial, sans-serif;
+  /* position: relative; */
+  border-collapse: collapse;
+ 
+}
+
+#outputListTable th {
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 8px;
+  display:block 
+} 
+
+/* #outputListTable,td,th {
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 8px;
+} */
+
+tr:nth-child(even) {
+  background-color: #dddddd;
 }
