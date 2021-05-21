@@ -107,6 +107,7 @@ h1,h2 {
 }
 
 #exampleTable,td, th {
+  font-size: 15px;
   border: 1px solid #dddddd;
   text-align: center;
   padding: 8px;
