@@ -121,10 +121,10 @@ const handleFormSubmit = event => {
   var data = formToJSON(form.elements);
 
   // Demo only: print the form data onscreen as a formatted JSON object.
-  const dataContainer = document.getElementsByClassName('JSONdata')[0];
+  //const dataContainer = document.getElementsByClassName('JSONdata')[0];
   
   //Use `JSON.stringify()` to make the output valid, human-readable JSON.
-  dataContainer.textContent = JSON.stringify(data, null, "  ");
+  //dataContainer.textContent = JSON.stringify(data, null, "  ");
 
   var dataJSON = JSON.stringify(data);
 
