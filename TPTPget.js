@@ -1,6 +1,7 @@
 function getDomainNames(){
+  getDomainNames = function(){}; // kill it as soon as it was called
   const theButton = document.querySelector(".button");
-  document.getElementById("loading").innerHTML = "Loading....";
+  document.getElementById("loading").innerHTML = "Loading....Please wait";
   theButton.classList.add("button--loading");
   $.ajaxSetup({
       scriptCharset: "utf-8", //maybe "ISO-8859-1"
@@ -51,10 +52,9 @@ function getDomainNames(){
 }
 
 
-
 function getNames(string){
   document.getElementById("hiddentable").hidden = false;
-  document.getElementById("loading").innerHTML = "Loading....";
+  document.getElementById("loading").innerHTML = "Loading....Please wait";
   const theButton = document.querySelector(".button");
   theButton.classList.add("button--loading");
   $("#problemNamesTable").empty();
@@ -90,7 +90,7 @@ function getNames(string){
 
 function getProblem(string,name){
   const theButton = document.querySelector(".button");
-  document.getElementById("loading").innerHTML = "Loading....";
+  document.getElementById("loading").innerHTML = "Loading....Please wait";
   theButton.classList.add("button--loading");
   $.ajaxSetup({
     scriptCharset: "utf-8", //maybe "ISO-8859-1"
@@ -106,16 +106,12 @@ function getProblem(string,name){
             $('#problem').val(problem);
             theButton.classList.remove("button--loading");
             document.getElementById("loading").innerHTML = "";
+            document.getElementById("loading").innerHTML = "Problem Succesfully loaded";
             });
 }
 
 
 function clearTPTP(){
-  problemNames = []
-  problem = []
-  domainNames = []
   $("#problemNamesTable").empty();
   document.getElementById("hiddentable").hidden = true;
 }
-
-
