@@ -48,6 +48,7 @@ function getDomainNames(){
 
 
 function getNames(string){
+  $("#problemNamesTable").empty();
   var name = string
   $.ajaxSetup({
     scriptCharset: "utf-8", //maybe "ISO-8859-1"
@@ -99,6 +100,6 @@ function clearTPTP(){
   problemNames = []
   problem = []
   domainNames = []
-  $('problemNamesTable > tr > td').remove();
+  $("#problemNamesTable").empty();
 }
 
