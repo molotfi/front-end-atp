@@ -99,7 +99,7 @@ fof(ms, conjecture, mortal(sokrates))." id="problem" name="problem" rows="8" col
     <!-- <input name="secret" type="hidden" value="1b3a9374-1a8e-434e-90ab-21aa7b9b80e7"/> -->  
 
     
-    <p style="float: left; width: 100px"><button id="proofbtn" class="btn proof" type="submit">Proof</button></p>
+    <p style="float: left; width: 100px"><button id="proofbtn" class="btnmain proof" type="submit">Proof</button></p>
 
 
     <textarea class="output" readonly id="output" rows="8" cols="75">
@@ -109,7 +109,7 @@ fof(ms, conjecture, mortal(sokrates))." id="problem" name="problem" rows="8" col
 </form>
 
 
-<p><button class="btn clear" id="add" onclick= "clearInput()"> Clear</button></p>
+<p><button class="btnmain clear" id="add" onclick= "clearInput()"> Clear</button></p>
 
 
 <table class="exampleTable" id="exampleTable">
@@ -122,23 +122,26 @@ fof(ms, conjecture, mortal(sokrates))." id="problem" name="problem" rows="8" col
     <td><code>"A Non-clausal Connection Calculus" by Jens Otten</code></td>
     <!-- <td>Explanation</td> -->
     <td> 
-    <button class="btn"onclick= "loadExampleInput1()" id="Example1"><img src="./icons/upload.svg"></button>
+    <button class="btnmain"onclick= "loadExampleInput1()" id="Example1"><img src="./icons/upload.svg"></button>
     </td>
   </tr>
   <tr>
     <td><code>nanoCoP: "A Non-clausal Connection Prover" by Jens Otten</code></td>
     <!-- <td>Explantaion</td> -->
-    <td><button class="btn"onclick= "loadExampleInput2()" id="Example2"><img src="./icons/upload.svg"></button></td>
+    <td><button class="btnmain"onclick= "loadExampleInput2()" id="Example2"><img src="./icons/upload.svg"></button></td>
   </tr>
   <tr>
     <td><code>Sokrates</code></td>
     <!-- <td>Explanation</td> -->
-    <td><button class="btn"onclick= "loadExampleInput3()" id="Example3"><img src="./icons/upload.svg"></button></td>
+    <td><button class="btnmain"onclick= "loadExampleInput3()" id="Example3"><img src="./icons/upload.svg"></button></td>
   </tr>
 </table>
 
-<button class="btn" onclick="getDomainNames()">TPTP</button>
-<button class="btn" onclick="clearTPTP()">clear</button>
+<button type="button" class="button" onclick="getDomainNames()">
+  <span class="button__text">TPTP</span>
+</button>
+<button class="button" onclick="clearTPTP()">CLEAR</button>
+<p style="float: center; width: px" class="loading" id="loading"></p>
 
 <table id="tptpTable">
 <tr id="firstrow"></tr>
@@ -160,7 +163,5 @@ fof(ms, conjecture, mortal(sokrates))." id="problem" name="problem" rows="8" col
 </section>
 </body>
 <script src="js.js"></script>
+
 </html>
-
-
-

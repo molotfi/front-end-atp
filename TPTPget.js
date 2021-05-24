@@ -1,4 +1,7 @@
 function getDomainNames(){
+  const theButton = document.querySelector(".button");
+  document.getElementById("loading").innerHTML = "Loading....";
+  theButton.classList.add("button--loading");
   $.ajaxSetup({
       scriptCharset: "utf-8", //maybe "ISO-8859-1"
       contentType: "application/json; charset=utf-8"});
@@ -42,12 +45,17 @@ function getDomainNames(){
                   $(row7).append("<td>" + "<button class=domains " + "id= " + domainNames[i] + " onclick=getNames(id)" + ">"  + domainNames[i] + "</button>" + "</td>");
                 }
               }
+              theButton.classList.remove("button--loading");
+              document.getElementById("loading").innerHTML = "";
               });
 }
 
 
 
 function getNames(string){
+  document.getElementById("loading").innerHTML = "Loading....";
+  const theButton = document.querySelector(".button");
+  theButton.classList.add("button--loading");
   $("#problemNamesTable").empty();
   var name = string
   $.ajaxSetup({
@@ -66,13 +74,13 @@ function getNames(string){
             problemNames = []
             for (j = 5; j < aTag.length; j++) {
               tempStr = aTag[j].innerText
-              // str = str.replace(/\//g, "");
               problemNames.push(tempStr)
             }
-            aTag
             for(i = 0; i <problemNames.length; i++){
               $(problemNamesTable).append("<td>" + "<button class=tptpnames " + "id= " + problemNames[i] + " name="+ name +" onclick=getProblem(id,name)" + ">"  + problemNames[i] + "</button>" + "</tr>");
             }
+            theButton.classList.remove("button--loading");
+            document.getElementById("loading").innerHTML = "";
             });
 }
 
@@ -80,6 +88,9 @@ function getNames(string){
 
 
 function getProblem(string,name){
+  const theButton = document.querySelector(".button");
+  document.getElementById("loading").innerHTML = "Loading....";
+  theButton.classList.add("button--loading");
   $.ajaxSetup({
     scriptCharset: "utf-8", //maybe "ISO-8859-1"
     contentType: "application/json; charset=utf-8"});
@@ -92,6 +103,8 @@ function getProblem(string,name){
             htmlDoc = htmlDoc.getElementsByTagName('body').item(0);
             var problem = htmlDoc.innerText
             $('#problem').val(problem);
+            theButton.classList.remove("button--loading");
+            document.getElementById("loading").innerHTML = "";
             });
 }
 
@@ -102,4 +115,5 @@ function clearTPTP(){
   domainNames = []
   $("#problemNamesTable").empty();
 }
+
 
