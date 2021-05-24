@@ -46,6 +46,8 @@ function readJSON(){
               });
 }
 
+
+
 function getNames(string){
   var name = string
   console.log(string)
@@ -75,6 +77,8 @@ function getNames(string){
             }
             });
 }
+
+
 
 
 function getProblem(string,name){
