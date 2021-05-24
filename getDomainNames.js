@@ -3,7 +3,7 @@ function readJSON(){
       scriptCharset: "utf-8", //maybe "ISO-8859-1"
       contentType: "application/json; charset=utf-8"});
 
-      $.getJSON('http://whateverorigin.org/get?url=' + encodeURIComponent('http://cl-informatik.uibk.ac.at/users/mfaerber/TPTP/6.3.0/Problems/') + '&callback=?',
+      $.getJSON('https://api.allorigins.win/get?url=' + encodeURIComponent('http://cl-informatik.uibk.ac.at/users/mfaerber/TPTP/6.3.0/Problems/') + '&callback=?',
           function(data) {
               var thecontents = data.contents;
               let parser = new DOMParser();
@@ -53,7 +53,7 @@ function getNames(string){
     scriptCharset: "utf-8", //maybe "ISO-8859-1"
     contentType: "application/json; charset=utf-8"});
 
-    $.getJSON('http://whateverorigin.org/get?url=' + encodeURIComponent('http://cl-informatik.uibk.ac.at/users/mfaerber/TPTP/6.3.0/Problems/' + name + "/") + '&callback=?',
+    $.getJSON('https://api.allorigins.win/get?url=' + encodeURIComponent('http://cl-informatik.uibk.ac.at/users/mfaerber/TPTP/6.3.0/Problems/' + name + "/") + '&callback=?',
         function(data) {
             var thecontents = data.contents;
             let parser = new DOMParser();
@@ -84,7 +84,7 @@ function getProblem(string,name){
     scriptCharset: "utf-8", //maybe "ISO-8859-1"
     contentType: "application/json; charset=utf-8"});
 
-    $.getJSON('http://whateverorigin.org/get?url=' + encodeURIComponent('http://cl-informatik.uibk.ac.at/users/mfaerber/TPTP/6.3.0/Problems/' + name +"/" + string) + '&callback=?',
+    $.getJSON('https://api.allorigins.win/get?url=' + encodeURIComponent('http://cl-informatik.uibk.ac.at/users/mfaerber/TPTP/6.3.0/Problems/' + name +"/" + string) + '&callback=?',
         function(data) {
             var thecontents = data.contents;
             let parser = new DOMParser();
@@ -94,3 +94,5 @@ function getProblem(string,name){
             $('#problem').val(problem);
             });
 }
+
+
