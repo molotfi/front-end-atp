@@ -20,7 +20,7 @@
   <script src="webassembly.js" type="module"></script>
   <script src="inputHandling.js"></script>
   <script src="inputExamples.js"></script>
-  <script type="text/javascript" src="getDomainNames.js"></script>
+  <script src="TPTPget.js"></script>
 
 </head>
 
@@ -109,7 +109,7 @@ fof(ms, conjecture, mortal(sokrates))." id="problem" name="problem" rows="8" col
 </form>
 
 
-    <p><button class="btn clear" id="add" onclick= "clearInput()"> Clear</button></p>
+<p><button class="btn clear" id="add" onclick= "clearInput()"> Clear</button></p>
 
 
 <table class="exampleTable" id="exampleTable">
@@ -137,7 +137,8 @@ fof(ms, conjecture, mortal(sokrates))." id="problem" name="problem" rows="8" col
   </tr>
 </table>
 
-<button onclick="readJSON()">GET TPTP</button>
+<button class="btn" onclick="getDomainNames()">TPTP</button>
+<button class="btn" onclick="clearTPTP()">clear</button>
 
 <table id="tptpTable">
 <tr id="firstrow"></tr>
@@ -149,8 +150,8 @@ fof(ms, conjecture, mortal(sokrates))." id="problem" name="problem" rows="8" col
 <tr id="row7"></tr>
 </table>
 
-<table style ="overflow-y:scroll; height:100px; width:600px; display:block;">
-  <tr id="ok"></tr>
+<table style ="overflow-y:hidden; overflow-x: scroll; height:100px; width:600px; display:block;">
+  <tr id="problemNamesTable"></tr>
 </table>
 
 

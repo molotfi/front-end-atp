@@ -1,4 +1,4 @@
-function readJSON(){
+function getDomainNames(){
   $.ajaxSetup({
       scriptCharset: "utf-8", //maybe "ISO-8859-1"
       contentType: "application/json; charset=utf-8"});
@@ -18,29 +18,28 @@ function readJSON(){
                 str = str.replace(/\//g, "");
                 domainNames.push(str)
               }
+              aTag = []
               for(i = 0; i <domainNames.length; i++){
-                // $(myUL).append("<li " + "id=" + domainNames[i] + ">" + "<span class=caret>" + domainNames[i] + "</span>");
-                console.log(domainNames.length)
                 if(i <= 8){
-                  $(firstrow).append("<td>" + "<button " + "id= " + domainNames[i] + " onclick=getNames(id)" + ">"  + domainNames[i] + "</button>" + "</td>");
+                  $(firstrow).append("<td>" + "<button class=domains " + "id= " + domainNames[i] + " onclick=getNames(id)" + ">"  + domainNames[i] + "</button>" + "</td>");
                 }
                 else if(i > 8 && i <= 17){
-                  $(secondrow).append("<td>" + "<button " + "id= " + domainNames[i] + " onclick=getNames(id)" + ">"  + domainNames[i] + "</button>" + "</td>");
+                  $(secondrow).append("<td>" + "<button class=domains " + "id= " + domainNames[i] + " onclick=getNames(id)" + ">"  + domainNames[i] + "</button>" + "</td>");
                 }
                 else if(i > 17 && i <= 26){
-                  $(thirdrow).append("<td>" + "<button " + "id= " + domainNames[i] + " onclick=getNames(id)" + ">"  + domainNames[i] + "</button>" + "</td>");
+                  $(thirdrow).append("<td>" + "<button class=domains " + "id= " + domainNames[i] + " onclick=getNames(id)" + ">"  + domainNames[i] + "</button>" + "</td>");
                 }
                 else if(i > 26 && i <= 35){
-                  $(row4).append("<td>" + "<button " + "id= " + domainNames[i] + " onclick=getNames(id)" + ">"  + domainNames[i] + "</button>" + "</td>");
+                  $(row4).append("<td>" + "<button class=domains " + "id= " + domainNames[i] + " onclick=getNames(id)" + ">"  + domainNames[i] + "</button>" + "</td>");
                 }
                 else if(i > 35 && i <= 44){
-                  $(row5).append("<td>" + "<button " + "id= " + domainNames[i] + " onclick=getNames(id)" + ">"  + domainNames[i] + "</button>" + "</td>");
+                  $(row5).append("<td>" + "<button class=domains " + "id= " + domainNames[i] + " onclick=getNames(id)" + ">"  + domainNames[i] + "</button>" + "</td>");
                 }
                 else if(i > 44 && i <= 50){
-                  $(row6).append("<td>" + "<button " + "id= " + domainNames[i] + " onclick=getNames(id)" + ">"  + domainNames[i] + "</button>" + "</td>");
+                  $(row6).append("<td>" + "<button class=domains " + "id= " + domainNames[i] + " onclick=getNames(id)" + ">"  + domainNames[i] + "</button>" + "</td>");
                 }
                 else{
-                  $(row7).append("<td>" + "<button " + "id= " + domainNames[i] + " onclick=getNames(id)" + ">"  + domainNames[i] + "</button>" + "</td>");
+                  $(row7).append("<td>" + "<button class=domains " + "id= " + domainNames[i] + " onclick=getNames(id)" + ">"  + domainNames[i] + "</button>" + "</td>");
                 }
               }
               });
@@ -50,7 +49,6 @@ function readJSON(){
 
 function getNames(string){
   var name = string
-  console.log(string)
   $.ajaxSetup({
     scriptCharset: "utf-8", //maybe "ISO-8859-1"
     contentType: "application/json; charset=utf-8"});
@@ -70,10 +68,9 @@ function getNames(string){
               // str = str.replace(/\//g, "");
               problemNames.push(tempStr)
             }
-            console.log(problemNames)
-
+            aTag
             for(i = 0; i <problemNames.length; i++){
-              $(ok).append("<td>" + "<button " + "id= " + problemNames[i] + " name="+ name +" onclick=getProblem(id,name)" + ">"  + problemNames[i] + "</button>" + "</tr>");
+              $(problemNamesTable).append("<td>" + "<button class=tptpnames " + "id= " + problemNames[i] + " name="+ name +" onclick=getProblem(id,name)" + ">"  + problemNames[i] + "</button>" + "</tr>");
             }
             });
 }
@@ -82,8 +79,6 @@ function getNames(string){
 
 
 function getProblem(string,name){
-  console.log(string)
-  console.log(name)
   $.ajaxSetup({
     scriptCharset: "utf-8", //maybe "ISO-8859-1"
     contentType: "application/json; charset=utf-8"});
@@ -99,4 +94,11 @@ function getProblem(string,name){
             });
 }
 
+
+function clearTPTP(){
+  problemNames = []
+  problem = []
+  domainNames = []
+  $('problemNamesTable > tr > td').remove();
+}
 
