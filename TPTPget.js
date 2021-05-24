@@ -53,6 +53,7 @@ function getDomainNames(){
 
 
 function getNames(string){
+  document.getElementById("hiddentable").hidden = false;
   document.getElementById("loading").innerHTML = "Loading....";
   const theButton = document.querySelector(".button");
   theButton.classList.add("button--loading");
@@ -114,6 +115,7 @@ function clearTPTP(){
   problem = []
   domainNames = []
   $("#problemNamesTable").empty();
+  document.getElementById("hiddentable").hidden = true;
 }
 
 
