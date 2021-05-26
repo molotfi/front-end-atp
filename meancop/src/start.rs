@@ -8,11 +8,6 @@ use crate::{parse, preprocess, Query, Error};
 use wasm_logger;
 
 pub fn main(data : &str) -> String {
-    /*
-     * TODO: error handling
-     * possible solution is to return serde_json::Result;
-     * that way the frontend would be able to print error message if one occurs.
-     */
     wasm_logger::init(wasm_logger::Config::new(log::Level::Info));
     let query : Query = serde_json::from_str(data).unwrap();
     let arena: Arena<String> = Arena::new();
@@ -21,12 +16,14 @@ pub fn main(data : &str) -> String {
     match run(&query, &arena) {
         Ok(t) => t,
         Err(e) => {
-            print!("{}", szs::Status(e.get_kind()));
+            const EXIT_CODE_1_MSG: &str = "Exited early with exit code: 1";
+            let mut output: String = format!("{}", szs::Status(e.get_kind()));
             if let Some(e) = e.get_error() {
                 error!("{}", e);
-                return format!("{}", e)
+                output.push_str(&*format!("{}", e))
             };
-            std::process::exit(1);
+            error!("{}", EXIT_CODE_1_MSG.to_string());
+            output
         }
     }
 }

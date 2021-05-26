@@ -10,15 +10,16 @@ export async function webassembly(json) {
 export async function debug() {
     let debugJSON = '{' +
         '"cuts": {' +
-            '"reduction": true, ' +
-            '"extension": "Inclusive"' +
+            '"reduction": false, ' +
+            '"extension": null' +
         '}, ' +
         '"conj": false, ' +
         '"nopaths": false, ' +
-        '"lim": null, ' +
+        '"lim": 1, ' +
         '"problem": "% This problem corresponds to the formula F# given in Section 2 of the article\\n% \\"nanoCoP: A Non-clausal Connection Prover\\" by Jens Otten,\\n% published at IJCAR 2016.\\nfof(1, conjecture, (\\n  ( p(a)\\n  & ( ( (q(f(f(c))) & ![X]: (q(f(X)) => q(X)))\\n      & ~q(c)\\n      )\\n    | ![Y]: (p(Y) => p(g(Y)))\\n    )\\n  ) => ?[Z]: p(g(g(Z))))).\\n\\n% (~((q(f(f(c))) & ![X]: (q(f(X)) => q(X))) => q(c))))).\\n\\n"' +
         '}'
-    webassembly(debugJSON)
+    console.log(JSON.parse(debugJSON))
+    console.log(await webassembly(debugJSON))
 }
 
 window.webassembly = webassembly
