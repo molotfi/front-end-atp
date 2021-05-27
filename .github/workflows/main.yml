@@ -28,7 +28,7 @@ jobs:
       - name: Remove File
         uses: JesseTG/rm@v1.0.2
         with:
-          path: .gitignore
+          path: ./pkg/.gitignore
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
