@@ -25,10 +25,10 @@ jobs:
         working-directory: .
         run: wasm-pack build --out-dir "pkg" --release --target web
 
-#       - name: Remove File
-#         uses: JesseTG/rm@v1.0.2
-#         with:
-#           path: .gitignore
+      - name: Remove File
+        uses: JesseTG/rm@v1.0.2
+        with:
+          path: .gitignore
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
