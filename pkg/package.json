@@ -1,0 +1,15 @@
+{
+  "name": "webassembly",
+  "collaborators": [
+    "Mateusz Belka <belka.mateusz.bm@gmail.com>"
+  ],
+  "version": "0.1.0",
+  "files": [
+    "webassembly_bg.wasm",
+    "webassembly.js",
+    "webassembly.d.ts"
+  ],
+  "module": "webassembly.js",
+  "types": "webassembly.d.ts",
+  "sideEffects": false
+}

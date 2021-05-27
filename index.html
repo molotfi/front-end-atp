@@ -1,0 +1,169 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Automated Theorem Prover</title>
+
+  <meta name="description" content="Automatic Problem Solver">
+  <meta name="author" content="SitePoint">
+
+  <link rel="stylesheet" type="text/css" href="codecss.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script src="webassembly.js" type="module"></script>
+  <script src="inputHandling.js"></script>
+  <script src="inputExamples.js"></script>
+  <script src="TPTPget.js"></script>
+
+</head>
+
+<style>
+	p.b {
+  white-space: normal;
+}
+h1 {text-align: center;}
+
+
+
+#ok {
+   float:right;
+}
+
+p {display:inline}
+
+
+</style>
+
+<body>
+
+<section class="content">
+  <h1 class="content__heading" >Automated Theorem Prover</h1>
+  <!-- <form class="ATP-form" id="ATP-form" style = "position:relative; right:82%; top:2px;"> -->
+    <form class="ATP-form" id="ATP-form">
+
+    <div class="testing">
+      <p>Choose from the following options:</p>
+    </div>
+
+    <div class="ATPinput">
+
+    <div>
+      <input class="ATPinput" id="Reduction" name="Reduction" type="checkbox" value="true">
+      <label class="ATPinput" for="Reduction">Reduction</label>
+    </div>  
+
+    <div>
+      <input class="ATPinput" id="Extension" name="Extension" type="checkbox" value="true"/>
+      <label class="ATPinput" for="Extension">Extension</label>
+
+      <input class="ATPinput" id="Extension1" name="Extension" type="radio" value="Inclusive" required disabled="disabled"/>
+      <label class="ATPinput" for="inc">Inc.</label>
+      <input class="ATPinput" id="Extension2" name="Extension" type="radio" value="Exclusive" required disabled="disabled"/>
+      <label class="ATPinput" for="exc">Exc.</label> 
+    </div>
+
+
+<div>
+    <input class="ATPinput" id="LSD" name="lim" type="checkbox" value="true"/>
+    <label class="ATPinput" for="LSD">Limit Search depth to</label>  
+	  <input class="ATPinput" id="LSD1" name="lim" type="number" disabled="disabled" placeholder="1" min="0" max="999" required rows="1" cols="2">
+    <label class="ATPinput" for="number">.</label>
+</div>
+
+
+<div>
+      <input class="ATPinput" id="Conjunctive" name="conj" type="checkbox" value="true"/>
+      <label class="ATPinput" for="Conjunctive">Conjunctive</label>
+</div>
+
+<div>
+       <input class="ATPinput" id="Sort" name="nopaths" type="checkbox" value="true"/>
+      <label class="ATPinput" for="Sort">Sort</label>
+</div>
+    </div>
+
+    <div class="ATPinput">
+    <textarea class="ATPinput" placeholder="fof(hm, axiom, ![X]: (human(X) => mortal(X))).
+fof(hs, axiom, human(sokrates)).
+fof(ms, conjecture, mortal(sokrates))." id="problem" name="problem" rows="8" cols="75" required></textarea>
+<p style="float: right; width: px" class="confirm" id="confirm"></p>
+    </div>
+
+    <!-- <input name="secret" type="hidden" value="1b3a9374-1a8e-434e-90ab-21aa7b9b80e7"/> -->  
+
+    
+    <p style="float: left; width: 100px"><button id="proofbtn" class="btnmain proof" type="submit">Proof</button></p>
+
+
+    <textarea class="output" readonly id="output" rows="8" cols="75">
+    </textarea>
+    <!-- <textarea class="JSONdata" readonly id="JSONdata" rows="8" cols="75">
+    </textarea> -->
+</form>
+
+
+<p><button class="btnmain clear" id="add" onclick= "clearInput()"> Clear</button></p>
+
+
+<table class="exampleTable" id="exampleTable">
+  <tr>
+    <th>Problem</th>
+    <!-- <th>test</th> -->
+    <th>Load</th>
+  </tr>
+  <tr>
+    <td><code>"A Non-clausal Connection Calculus" by Jens Otten</code></td>
+    <!-- <td>Explanation</td> -->
+    <td> 
+    <button class="btnmain"onclick= "loadExampleInput1()" id="Example1"><img src="./icons/upload.svg"></button>
+    </td>
+  </tr>
+  <tr>
+    <td><code>nanoCoP: "A Non-clausal Connection Prover" by Jens Otten</code></td>
+    <!-- <td>Explantaion</td> -->
+    <td><button class="btnmain"onclick= "loadExampleInput2()" id="Example2"><img src="./icons/upload.svg"></button></td>
+  </tr>
+  <tr>
+    <td><code>Sokrates</code></td>
+    <!-- <td>Explanation</td> -->
+    <td><button class="btnmain"onclick= "loadExampleInput3()" id="Example3"><img src="./icons/upload.svg"></button></td>
+  </tr>
+</table>
+
+<button type="button" class="button" onclick="getDomainNames()">
+  <span class="button__text">TPTP</span>
+</button>
+<button class="button" onclick="clearTPTP()">CLEAR</button>
+<p style="float: center; width: px" class="loading" id="loading"></p>
+
+<table id="tptpTable">
+<tr id="firstrow"></tr>
+<tr id="secondrow"></tr>
+<tr id="thirdrow"></tr>
+<tr id="row4"></tr>
+<tr id="row5"></tr>
+<tr id="row6"></tr>
+<tr id="row7"></tr>
+</table>
+
+<div id="hiddentable" hidden>
+<table style ="overflow-y:hidden; overflow-x: scroll; height:100px; width:600px; display:block;" >
+  <tbody id="emptytable">
+    <tr id="problemNamesTable"></tr>
+  </tbody>
+</table>
+</div>
+
+
+</section>
+</body>
+<script src="atphandler.js"></script>
+
+</html>

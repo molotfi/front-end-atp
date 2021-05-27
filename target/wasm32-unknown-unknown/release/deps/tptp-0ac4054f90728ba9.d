@@ -1,0 +1,13 @@
+/home/runner/work/front-end-atp/front-end-atp/target/wasm32-unknown-unknown/release/deps/tptp-0ac4054f90728ba9.rmeta: /home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/tptp-0.28.0/src/lib.rs /home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/tptp-0.28.0/src/utils.rs /home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/tptp-0.28.0/src/cnf.rs /home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/tptp-0.28.0/src/common.rs /home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/tptp-0.28.0/src/fof.rs /home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/tptp-0.28.0/src/top.rs /home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/tptp-0.28.0/src/visitor.rs
+
+/home/runner/work/front-end-atp/front-end-atp/target/wasm32-unknown-unknown/release/deps/libtptp-0ac4054f90728ba9.rlib: /home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/tptp-0.28.0/src/lib.rs /home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/tptp-0.28.0/src/utils.rs /home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/tptp-0.28.0/src/cnf.rs /home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/tptp-0.28.0/src/common.rs /home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/tptp-0.28.0/src/fof.rs /home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/tptp-0.28.0/src/top.rs /home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/tptp-0.28.0/src/visitor.rs
+
+/home/runner/work/front-end-atp/front-end-atp/target/wasm32-unknown-unknown/release/deps/tptp-0ac4054f90728ba9.d: /home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/tptp-0.28.0/src/lib.rs /home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/tptp-0.28.0/src/utils.rs /home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/tptp-0.28.0/src/cnf.rs /home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/tptp-0.28.0/src/common.rs /home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/tptp-0.28.0/src/fof.rs /home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/tptp-0.28.0/src/top.rs /home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/tptp-0.28.0/src/visitor.rs
+
+/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/tptp-0.28.0/src/lib.rs:
+/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/tptp-0.28.0/src/utils.rs:
+/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/tptp-0.28.0/src/cnf.rs:
+/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/tptp-0.28.0/src/common.rs:
+/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/tptp-0.28.0/src/fof.rs:
+/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/tptp-0.28.0/src/top.rs:
+/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/tptp-0.28.0/src/visitor.rs:
