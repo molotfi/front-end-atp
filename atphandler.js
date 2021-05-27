@@ -70,7 +70,7 @@ const formToJSON = elements => [].reduce.call(elements, (data, element) => {
         data.conj = true;
       }
       if(Sort.checked && element.name == "nopaths"){
-        data.nopaths = true;
+        data.nopaths = false;
       }
       if(LSD.checked && element.name == "lim"){
         data.lim = Number(LSD1.value);
@@ -93,15 +93,18 @@ const formToJSON = elements => [].reduce.call(elements, (data, element) => {
         }
         if(!Sort.checked)
         {
-          data.nopaths = false;
+          data.nopaths = true;
         }
         if(!LSD.checked)
         {
           data.lim = null;
         }
-        delete data['Reduction'];
-        delete data['Extension'];
-        data[element.name] = false;
+        else{
+          delete data['Reduction'];
+          delete data['Extension'];
+          data[element.name] = false;
+        }
+
   }
 
   return data;
@@ -121,10 +124,10 @@ const handleFormSubmit = event => {
   var data = formToJSON(form.elements);
 
   // Demo only: print the form data onscreen as a formatted JSON object.
-  //const dataContainer = document.getElementsByClassName('JSONdata')[0];
+  const dataContainer = document.getElementsByClassName('JSONdata')[0];
   
   //Use `JSON.stringify()` to make the output valid, human-readable JSON.
-  //dataContainer.textContent = JSON.stringify(data, null, "  ");
+  dataContainer.textContent = JSON.stringify(data, null, "  ");
 
   var dataJSON = JSON.stringify(data);
 
