@@ -62,7 +62,58 @@ h1,h2 {
 
 
 /* proof button */
+
+.proof {
+  position: relative;
+  padding: 1px 20px;
+  font-size: 16px;
+  width: 90px;
+  height: 30px;
+  background: black;
+  border: none;
+  outline: none;
+  border-radius: 25px;
+  cursor: pointer;
+  color: red;
+  font: bold 15pxx 'Quicksand', san-serif;
+  color: white;
+  transition: all 0.7s;
+}
   
+.proof--loading::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  border: 4px solid transparent;
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: button-loading-spinner 1s ease infinite;
+}
+
+.proof:active {
+  background: white;
+}
+
+@keyframes proof-loading-spinner {
+  from {
+      transform: rotate(0turn);
+  }
+
+  to {
+      transform: rotate(1turn);
+  }
+}
+
+
+
+/* //////////////////////////////////// */
+/* other buttons (clear, examples ) */
 .btnmain {
   background-color: gray; /* Blue background */
   border: none; /* Remove borders */
@@ -75,13 +126,12 @@ h1,h2 {
   height: 30px;
   cursor:pointer;
   border-radius: 25px;    
+  transition: all 0.7s;
 }
+/*//////////////////////////////////////////////// */
 
-.proof{
-  background-color: black;
-  color: white;
-}
 
+/* domain names buttons in the table below */
 .domains {
   background-color: gray; /* Blue background */
   border: none; /* Remove borders */
@@ -97,8 +147,12 @@ h1,h2 {
   border-radius: 25px; 
   font-weight: bold;   
   font-weight: 550;
+  transition: all 0.7s;
 }
 
+/* //////////////////////////////////////////////// */
+
+/* problem names last table below */
 .tptpnames{
   background-color: gray; /* Blue background */
   border: none; /* Remove borders */
@@ -114,6 +168,12 @@ h1,h2 {
   border-radius: 25px; 
   font-weight: bold;   
   font-weight: 550;
+  transition: all 0.7s;
+}
+
+.active {
+  color: #F00;
+  background-color: red;
 }
 
 .tptpnames:hover{
@@ -123,6 +183,25 @@ h1,h2 {
 .domains:hover{
   background-color: white;
 }
+
+
+.tptpnamesUnused{
+  background-color: black; /* Blue background */
+  border: none; /* Remove borders */
+  border: 1px solid #000000;
+  color: white; /* White text */
+  padding: 1px 15px; /* Some padding */
+  font-size: 12px; /* Set a font size */
+  cursor: pointer; /* Mouse pointer on hover */
+
+  width: 100px;
+  height: 25px;
+  cursor:pointer;
+  border-radius: 25px; 
+  font-weight: bold;   
+  font-weight: 550;
+}
+
 
 /* click buttons Darker background on mouse-over */
 
@@ -164,26 +243,31 @@ tr:nth-child(even) {
 }
 
 
-/* loading button */
+/* loading button tptp */
 
 .button {
+  padding: 1px 20px;
+  font-size: 16px;
+  width: 90px;
+  height: 30px;
   position: relative;
-  padding: 8px 16px;
   background: gray;
   border: none;
   outline: none;
   border-radius: 25px;
   cursor: pointer;
+  color: red;
+  font: bold 15pxx 'Quicksand', san-serif;
+  color: black;
+  transition: all 0.7s;
+}
+
+.button:hover {
+  background-color: white;
 }
 
 .button:active {
   background: white;
-}
-
-.button__text {
-  font: bold 15pxx 'Quicksand', san-serif;
-  color: black;
-  transition: all 0.2s;
 }
 
 .button--loading::after {
@@ -200,6 +284,16 @@ tr:nth-child(even) {
   border-top-color: #ffffff;
   border-radius: 50%;
   animation: button-loading-spinner 1s ease infinite;
+}
+
+.active {
+  color: red;
+  background: black;
+}
+
+.selected {
+  color: red;
+  background: black;
 }
 
 @keyframes button-loading-spinner {

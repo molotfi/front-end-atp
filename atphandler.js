@@ -99,9 +99,12 @@ const formToJSON = elements => [].reduce.call(elements, (data, element) => {
         {
           data.lim = null;
         }
-        delete data['Reduction'];
-        delete data['Extension'];
-        data[element.name] = false;
+        else{
+          delete data['Reduction'];
+          delete data['Extension'];
+          data[element.name] = false;
+        }
+
   }
 
   return data;
@@ -121,24 +124,30 @@ const handleFormSubmit = event => {
   var data = formToJSON(form.elements);
 
   // Demo only: print the form data onscreen as a formatted JSON object.
-  //const dataContainer = document.getElementsByClassName('JSONdata')[0];
+  const dataContainer = document.getElementsByClassName('JSONdata')[0];
   
   //Use `JSON.stringify()` to make the output valid, human-readable JSON.
-  //dataContainer.textContent = JSON.stringify(data, null, "  ");
+  dataContainer.textContent = JSON.stringify(data, null, "  ");
 
   var dataJSON = JSON.stringify(data);
 
   (async () => {
+    const theButton = document.querySelector(".proof");
+    theButton.classList.add("proof--loading");
     try {
+      console.log('calling');
       var proofout = await webassembly(dataJSON);
       document.getElementById("output").innerHTML = proofout;
     } catch(err) {
-      //console.log(err)
+      console.log(err)
       document.getElementById("confirm").innerHTML = "Error: No proof found";
       $('#output').html('');
     }
-    
+    theButton.classList.remove("proof--loading");
   })()
+
+  // webassembly(dataJSON).then((value) => document.getElementById("output").innerHTML = value )
+  
   data = {};
 };
 
