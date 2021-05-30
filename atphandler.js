@@ -70,7 +70,7 @@ const formToJSON = elements => [].reduce.call(elements, (data, element) => {
         data.conj = true;
       }
       if(Sort.checked && element.name == "nopaths"){
-        data.nopaths = false;
+        data.nopaths = true;
       }
       if(LSD.checked && element.name == "lim"){
         data.lim = Number(LSD1.value);
@@ -93,7 +93,7 @@ const formToJSON = elements => [].reduce.call(elements, (data, element) => {
         }
         if(!Sort.checked)
         {
-          data.nopaths = true;
+          data.nopaths = false;
         }
         if(!LSD.checked)
         {
@@ -132,16 +132,22 @@ const handleFormSubmit = event => {
   var dataJSON = JSON.stringify(data);
 
   (async () => {
+    const theButton = document.querySelector(".proof");
+    theButton.classList.add("proof--loading");
     try {
+      console.log('calling');
       var proofout = await webassembly(dataJSON);
       document.getElementById("output").innerHTML = proofout;
     } catch(err) {
-      //console.log(err)
+      console.log(err)
       document.getElementById("confirm").innerHTML = "Error: No proof found";
       $('#output').html('');
     }
-    
+    theButton.classList.remove("proof--loading");
   })()
+
+  // webassembly(dataJSON).then((value) => document.getElementById("output").innerHTML = value )
+  
   data = {};
 };
 

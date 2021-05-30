@@ -3,7 +3,6 @@ import init, { run } from './pkg/webassembly.js'
 export async function webassembly(json) {
     await init()
     let proof = run(json)
-    //document.getElementById("output").innerHTML = proof;
     return proof
 }
 
