@@ -41,27 +41,18 @@ const formToJSON = elements => [].reduce.call(elements, (data, element) => {
       {
         if(Reduction.checked && !Extension.checked)
         {
-          //delete data['Reduction'];
-          //delete data['Extension'];
-          //data.cut = true;
           data.cuts ={reduction: true, extension: null };
           Reduction.value = true;
           Extension.value = false;
         }
         if(Extension.checked && !Reduction.checked)
         {
-          // delete data['Reduction'];
-          // delete data['Extension'];
-          //data.cut = true;
           data.cuts =({reduction: false, extension: element.value });
           Reduction.value = false;
           Extension.value = true;
         }
         if((Extension.checked) && (Reduction.checked))
         {
-          // delete data['Reduction'];
-          // delete data['Extension'];
-          //data.cut = true;
           data.cuts =({reduction: true, extension: element.value });
         }
       }
@@ -84,7 +75,6 @@ const formToJSON = elements => [].reduce.call(elements, (data, element) => {
   if(!element.checked && isCheckbox(element)){
        if(!(Reduction.checked) && !(Extension.checked))
         { 
-          //data.cut = false;
           data.cuts =({reduction: false, extension: null });
         }
         if(!Conjunctive.checked)
@@ -104,9 +94,7 @@ const formToJSON = elements => [].reduce.call(elements, (data, element) => {
           delete data['Extension'];
           data[element.name] = false;
         }
-
   }
-
   return data;
 }, {});
 
@@ -115,6 +103,7 @@ const formToJSON = elements => [].reduce.call(elements, (data, element) => {
  * @param  {Event} event  the submit event triggered by the user
  * @return {void}
  */
+
 const handleFormSubmit = event => {
   
   // Stop the form from submitting since we’re handling that with AJAX.
@@ -124,30 +113,26 @@ const handleFormSubmit = event => {
   var data = formToJSON(form.elements);
 
   // Demo only: print the form data onscreen as a formatted JSON object.
-  const dataContainer = document.getElementsByClassName('JSONdata')[0];
+  //const dataContainer = document.getElementsByClassName('JSONdata')[0];
   
   //Use `JSON.stringify()` to make the output valid, human-readable JSON.
-  dataContainer.textContent = JSON.stringify(data, null, "  ");
+  //dataContainer.textContent = JSON.stringify(data, null, "  ");
 
-  var dataJSON = JSON.stringify(data);
-
+  var dataJSON = JSON.stringify(data); 
+   
   (async () => {
     const theButton = document.querySelector(".proof");
-    theButton.classList.add("proof--loading");
     try {
-      console.log('calling');
-      var proofout = await webassembly(dataJSON);
+      theButton.classList.add("proof--loading");
+      var proofout =  await webassembly(dataJSON); 
       document.getElementById("output").innerHTML = proofout;
     } catch(err) {
       console.log(err)
-      document.getElementById("confirm").innerHTML = "Error: No proof found";
+      document.getElementById("confirm").innerHTML = "Error: No proof found" + err;
       $('#output').html('');
     }
     theButton.classList.remove("proof--loading");
   })()
-
-  // webassembly(dataJSON).then((value) => document.getElementById("output").innerHTML = value )
-  
   data = {};
 };
 

@@ -242,7 +242,6 @@ tr:nth-child(even) {
  color: blue;
 }
 
-
 /* loading button tptp */
 
 .button {
@@ -260,6 +259,11 @@ tr:nth-child(even) {
   font: bold 15pxx 'Quicksand', san-serif;
   color: black;
   transition: all 0.7s;
+}
+
+.loading{
+  color: black;
+  font-size: 13px;
 }
 
 .button:hover {
@@ -286,7 +290,12 @@ tr:nth-child(even) {
   animation: button-loading-spinner 1s ease infinite;
 }
 
-.active {
+.domainsselected {
+  color: red;
+  background: black;
+}
+
+.chose {
   color: red;
   background: black;
 }

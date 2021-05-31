@@ -1,14 +1,15 @@
 var flag = true;
 function showTable(){
-
   if(flag){
+    buttonSelected("domains")
     $('.button').addClass('selected');
     document.getElementById("tptpTable").hidden = false;
-    buttonSelected("domains")
   }
   else{
     $('.button').removeClass('selected');
     document.getElementById("tptpTable").hidden = true;
+    $("#problemNamesTable").empty();
+    document.getElementById("hiddentable").hidden = true;
   }
   flag = !flag
 }
@@ -26,13 +27,14 @@ fetch('./data.json')
       $(firstrow).append("<td>" + "<button class=domains " + "id= " + Object.keys(data)[i] + " onclick=getNamesJson(id)" + ">"  + Object.keys(data)[i] + "</button>" + "</td>");
     }  
   });
+
 }
 
 var toggle = true;
 function getNamesJson(string){
   $("#problemNamesTable").empty();
   var name = string;
-  if(toggle){
+  // if(toggle){
     fetch('./data.json')
     .then (results => results.json())
     .then (data => {
@@ -52,17 +54,20 @@ function getNamesJson(string){
           $(problemNamesTable).append("<td>" + "<button class=tptpnamesUnused color=black>" + str + "</button> </td>");
         }
       }
+      buttonSelected("domains")
+      buttonSelected2("tptpnames")
     });
-  }
-  else{
-    $("#problemNamesTable").empty();
-    document.getElementById("hiddentable").hidden = true;
-  }
-  toggle = !toggle
+  // }
+  // else{
+  //   $("#problemNamesTable").empty();
+  //   document.getElementById("hiddentable").hidden = true;
+  // }
+  // toggle = !toggle
 }
 
 
 function getProblem(string,name){
+  buttonSelected2("tptpnames")
   const theButton = document.querySelector(".button");
   document.getElementById("loading").innerHTML = "Loading....Please wait";
   theButton.classList.add("button--loading");
@@ -80,7 +85,7 @@ function getProblem(string,name){
             $('#problem').val(problem);
             theButton.classList.remove("button--loading");
             document.getElementById("loading").innerHTML = "";
-            document.getElementById("loading").innerHTML = "Problem Succesfully loaded";
+            document.getElementById("loading").innerHTML = "Problem succesfully loaded!";
             setTimeout(() => {
               document.getElementById("loading").innerHTML = "";
             }, 3000);
@@ -89,17 +94,32 @@ function getProblem(string,name){
 
 function buttonSelected(string){
   var btns = document.getElementsByClassName(string);
-  console.log(btns.length);
   for (var i = 0; i < btns.length; i++) {
     btns[i].addEventListener("click", function() {
-      var current = document.getElementsByClassName("active");
+      var current = document.getElementsByClassName("domainsselected");
+      //If there's no active class
+      if (current.length > 0) {
+        current[0].className = current[0].className.replace(" domainsselected", "");
+      }
+      // Add the active class to the current/clicked button
+      //this.className += " active";
+      this.classList.add("domainsselected");
+    });
+  }
+}
+
+function buttonSelected2(string){
+  var buttons = document.getElementsByClassName(string);
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener("click", function() {
+      var current = document.getElementsByClassName("chose");
   
       // If there's no active class
       if (current.length > 0) {
-        current[0].className = current[0].className.replace(" active", "");
+        current[0].className = current[0].className.replace(" chose", "");
       }
       // Add the active class to the current/clicked button
-      this.className += " active";
+      this.className += " chose";
     });
   }
 }
