@@ -62,7 +62,24 @@ async function wasmEval() {
     var zip = new JSZip();
 
     for (const cfg of cfgs) {
-        var configStr = cfg.join()
+        const cutsr = cfg.indexOf("reduction");
+        const cutsex = cfg.indexOf("extension-exc");
+        const cutsei = cfg.indexOf("extension-inc");
+
+        var configStr = JSON.parse(JSON.stringify(cfg))
+        if (cutsr !== -1 && cutsex !== -1) {
+            configStr.splice(Math.min(cutsr, cutsex), 2, "cutsrex")
+        } else if (cutsr !== -1 && cutsei !== -1) {
+            configStr.splice(Math.min(cutsr, cutsei), 2, "cutsrei")
+        } else if (cutsr === -1 && cutsex !== -1) {
+            configStr.splice(cutsex, 1, "cutsex")
+        } else if (cutsr === -1 && cutsei !== -1) {
+            configStr.splice(cutsei, 1, "cutsei")
+        } else if (cutsr !== -1 && cutsei === -1 && cutsex === -1) {
+            configStr.splice(cutsr, 1, "cutsr")
+        }
+
+        configStr = "meancop--" + configStr.join("--")
         outputs[configStr] = {}
 
         for (const [filename, problem] of contents) {
@@ -76,7 +93,8 @@ async function wasmEval() {
         Object.entries(outputs).forEach(([config, configResults]) => {
             Object.entries(configResults).forEach(([filename, time]) => {
                 // console.log(config, filename, time)
-                folder.file(filename.toString(), time.toString())
+                var filenameStr = filename.toString() + ".time"
+                folder.file(filenameStr, time.toString())
             })
         })
     }
