@@ -1,10 +1,8 @@
-import init, { run } from './pkg/webassembly.js'
+import init, {run} from './pkg/webassembly.js'
 
 export async function webassembly(json) {
     await init()
-    let proof = run(json)
-    //document.getElementById("output").innerHTML = proof;
-    return proof
+    return run(json)
 }
 
 export async function debug() {
@@ -14,8 +12,8 @@ export async function debug() {
             '"extension": null' +
         '}, ' +
         '"conj": true, ' +
-        '"nopaths": true, ' +
-        '"lim": 1, ' +
+        '"nopaths": false, ' +
+        '"lim": null, ' + // Meant to give errors
         '"problem": "fof(1, conjecture, ((![X]: ((~p(X) | q(f(X))) => (q(X) & (q(a) => r(b)) & ~r(X))) & q(f(b))) => p(a))).\\n"' +
         '}'
     console.log(JSON.parse(debugJSON))

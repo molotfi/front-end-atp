@@ -14,6 +14,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.6.0/jszip.min.js" integrity="sha512-uVSVjE7zYsGz4ag0HEzfugJ78oHCI1KhdkivjQro8ABL/PRiEO4ROwvrolYAcZnky0Fl/baWKYilQfWvESliRA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js" integrity="sha512-Qlv6VSKh1gDKGoJbnyA5RMXYcvnpIqhO++MhIM2fStMcGT9i2T//tSwYFlcyoRRDcDZ+TYHpH8azBBCyhpSeqw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -21,6 +23,10 @@
   <script src="inputHandling.js"></script>
   <script src="inputExamples.js"></script>
   <script src="TPTPget.js"></script>
+  <script src="eval.js"></script>
+
+  <!--- Eval code, doesn't affect normal runtime --->
+  <script src="eval.js" type="module"></script>
 
 </head>
 
@@ -39,10 +45,15 @@ h1 {text-align: center;}
 p {display:inline}
 
 
+/*#file-selector {*/
+/*    display: none;*/
+/*}*/
+
 </style>
 
 <body>
 
+<input type="file" id="file-selector" accept=".p" multiple="multiple">
 <section class="content">
   <h1 class="content__heading" >Automated Theorem Prover</h1>
   <!-- <form class="ATP-form" id="ATP-form" style = "position:relative; right:82%; top:2px;"> -->

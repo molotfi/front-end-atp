@@ -8,7 +8,7 @@ use crate::{parse, preprocess, Query, Error};
 use wasm_logger;
 
 pub fn main(data : &str) -> String {
-    wasm_logger::init(wasm_logger::Config::new(log::Level::Info));
+    wasm_logger::init(wasm_logger::Config::new(log::Level::Error)); // TODO: Change Error -> Info
     let query : Query = serde_json::from_str(data).unwrap();
     let arena: Arena<String> = Arena::new();
     info!("{}", &*format!("{:?}", query));
