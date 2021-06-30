@@ -50,12 +50,7 @@ function cfgAndProblemToJson(cfg, problem) {
 async function wasmEval() {
 
     const cfgs = [
-        ["conj"],
-        ["conj", "reduction"],
-        ["conj", "extension-inc"],
-        ["conj", "extension-exc"],
-        ["conj", "reduction", "extension-inc"],
-        ["conj", "reduction", "extension-exc"],
+        ["conj", "reduction", "extension-inc"]
     ]
 
     var outputs = {}
@@ -83,10 +78,23 @@ async function wasmEval() {
         outputs[configStr] = {}
 
         for (const [filename, problem] of contents) {
+            outputs[configStr][filename] = {}
             let jsonObj = cfgAndProblemToJson(cfg, problem.replace(/\r\n/g, "\n"));
-            const startTime = start();
+
+            let endTimes = [];
+
+            //warmup run
             await webassembly(JSON.stringify(jsonObj));
-            outputs[configStr][filename] = end(startTime);
+
+            for (let i = 0; i < 100; i++) {
+                const startTime = start();
+                await webassembly(JSON.stringify(jsonObj));
+                //console.log("Problem: " + filename + ", loop " + i + " finished")
+                endTimes.push(end(startTime));
+            }
+            let mean = average(endTimes);
+            let stddev = standardDeviation(endTimes);
+            outputs[configStr][filename] = "mean: " + mean.toString() + ", sample standard deviation: " + stddev.toString();
         }
 
         var folder = zip.folder(configStr);
@@ -94,7 +102,7 @@ async function wasmEval() {
             Object.entries(configResults).forEach(([filename, time]) => {
                 // console.log(config, filename, time)
                 var filenameStr = filename.toString() + ".time"
-                folder.file(filenameStr, time.toString())
+                folder.file(filenameStr, time)
             })
         })
     }
@@ -106,39 +114,17 @@ async function wasmEval() {
         });
 }
 
-// var textFile = null,
-// makeTextFile = function (text) {
-//     var data = new Blob([text], {type: 'text/plain'});
-//
-//     // If we are replacing a previously generated file we need to
-//     // manually revoke the object URL to avoid memory leaks.
-//     if (textFile !== null) {
-//         window.URL.revokeObjectURL(textFile);
-//     }
-//
-//     textFile = window.URL.createObjectURL(data);
-//     console.log(textFile)
-//
-//     // returns a URL you can use as a href
-//     return textFile;
-// };
-//
-// var create = document.getElementById('download');
-//
-// create.addEventListener('click', function () {
-//     var link = document.createElement('a');
-//     link.setAttribute('download', 'info.txt');
-//     link.href = makeTextFile(output);
-//     document.body.appendChild(link);
-//
-//     // wait for the link to be added to the document
-//     window.requestAnimationFrame(function () {
-//         var event = new MouseEvent('click');
-//         link.dispatchEvent(event);
-//         document.body.removeChild(link);
-//     });
-//
-// }, false);
+const average = list => list.reduce((prev, curr) => prev + curr) / list.length;
+
+const standardDeviation = (arr, usePopulation = false) => {
+    const mean = arr.reduce((acc, val) => acc + val, 0) / arr.length;
+    return Math.sqrt(
+        arr
+            .reduce((acc, val) => acc.concat((val - mean) ** 2), [])
+            .reduce((acc, val) => acc + val, 0) /
+        (arr.length - (usePopulation ? 0 : 1))
+    );
+};
 
 /**
  *  Simple JavaScript Promise that reads a file as text.
